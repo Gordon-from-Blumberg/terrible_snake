@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="terrible_snake" default="build" basedir=".">
+    <property file="build.properties"/>
+
+    <target name="build">
+
+    </target>
+</project>

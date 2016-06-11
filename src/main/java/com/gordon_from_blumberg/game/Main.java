@@ -9,7 +9,6 @@ package com.gordon_from_blumberg.game;
  * Created: 16:06 011 11.06.16
  */
 
-import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.terrible_snake.TerribleSnake;
 
 public class Main {

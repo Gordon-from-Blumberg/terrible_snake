@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.service;
+package com.gordon_from_blumberg.game.service;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.terrible_snake.service;
  */
 
 
-import com.gordon_from_blumberg.terrible_snake.settings.Settings;
+import com.gordon_from_blumberg.game.settings.Settings;
 
 public interface SettingsService {
     Settings getSettings();

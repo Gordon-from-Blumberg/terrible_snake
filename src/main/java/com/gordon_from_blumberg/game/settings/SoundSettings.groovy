@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.settings
+package com.gordon_from_blumberg.game.settings
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg 

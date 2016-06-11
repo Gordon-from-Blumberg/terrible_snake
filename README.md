@@ -1,2 +1,2 @@
-# terrible_snake
+# Terrible Snake
 Classic game "Snake"

@@ -10,11 +10,16 @@ package com.gordon_from_blumberg.terrible_snake;
  */
 
 import com.gordon_from_blumberg.game.Game;
+import com.gordon_from_blumberg.game.GameCore;
+import com.gordon_from_blumberg.game.GameRenderer;
 
 public class TerribleSnake implements Game {
 
-    private final int TICKS_PER_SECOND = 25;
-    private final int MAX_FRAME_SKIP = 5;
+    private static final int TICKS_PER_SECOND = 25;
+    private static final int MAX_FRAME_SKIP = 5;
+
+    GameCore gameCore;
+    GameRenderer gameRenderer;
 
     private boolean running = false;
 

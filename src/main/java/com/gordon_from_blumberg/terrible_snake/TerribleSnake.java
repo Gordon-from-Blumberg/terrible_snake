@@ -13,10 +13,7 @@ import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.game.GameCore;
 import com.gordon_from_blumberg.game.GameRenderer;
 
-public class TerribleSnake implements Game {
-
-    private static final int TICKS_PER_SECOND = 25;
-    private static final int MAX_FRAME_SKIP = 5;
+public class TerribleSnake implements Game, Configuration {
 
     GameCore gameCore;
     GameRenderer gameRenderer;
@@ -25,7 +22,10 @@ public class TerribleSnake implements Game {
 
     @Override
     public void init() {
+        gameCore = new TerribleSnakeCore();
+        gameRenderer = new TerribleSnakeRenderer();
 
+        running = true;
     }
 
     @Override
@@ -35,12 +35,12 @@ public class TerribleSnake implements Game {
 
     @Override
     public void updateGame() {
-
+        running = gameCore.update();
     }
 
     @Override
     public void renderGame(float interpolation) {
-
+        gameRenderer.render(interpolation);
     }
 
     @Override

@@ -9,10 +9,9 @@ package com.gordon_from_blumberg.terrible_snake.subject;
  * Created: 20:47 012 12.06.16
  */
 
-import com.gordon_from_blumberg.game.GameComponent;
-import com.gordon_from_blumberg.game.GameSubject;
+import com.gordon_from_blumberg.game.subject.GameSubject;
 
-public interface SnakeSubject extends GameSubject, GameComponent {
+public interface SnakeSubject extends GameSubject {
     /**
      * Returns length of the snake
      * @return Snake's length

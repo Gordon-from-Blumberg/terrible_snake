@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.game;
+package com.gordon_from_blumberg.game.subject;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -13,4 +13,5 @@ package com.gordon_from_blumberg.game;
  * Specifies the game subject that must be updated every tick
  */
 public interface GameSubject {
+    void update();
 }

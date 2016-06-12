@@ -9,10 +9,15 @@ package com.gordon_from_blumberg.terrible_snake.subject;
  * Created: 20:48 012 12.06.16
  */
 
-import java.util.List;
+import java.util.LinkedList;
 
 public class Snake implements SnakeSubject {
-    private List<SnakePartSubject> parts;
+    private LinkedList<SnakePartSubject> parts;
+
+    @Override
+    public void update() {
+
+    }
 
     @Override
     public int getLength() {
@@ -21,6 +26,6 @@ public class Snake implements SnakeSubject {
 
     @Override
     public SnakePartSubject getHead() {
-        return parts.get(0);
+        return parts.getFirst();
     }
 }

@@ -6,10 +6,12 @@ package com.gordon_from_blumberg.terrible_snake.subject;
  * Project: Terrible snake
  *
  * @author: gordon
- * Created: 22:26 012 12.06.16
+ * Created: 0:42 013 13.06.16
  */
 
-public class SnakePart implements SnakePartSubject {
+import com.gordon_from_blumberg.game.subject.GameSubjectsContainer;
+
+public class SnakeSubjectsContainer implements GameSubjectsContainer {
     @Override
     public void update() {
 

@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.game;
  */
 
 /**
- * Specifies the game element that must be considered during the updating
+ * Specifies the game subject that must be updated every tick
  */
-public interface GameElement {
+public interface GameSubject {
 }

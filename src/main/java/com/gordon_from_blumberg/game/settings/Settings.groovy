@@ -9,6 +9,8 @@ package com.gordon_from_blumberg.game.settings
  */
 
 public class Settings {
+    GameSettings gameSettings
+
     GraphicSettings graphicSettings
 
     SoundSettings soundSettings

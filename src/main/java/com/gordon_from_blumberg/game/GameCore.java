@@ -13,6 +13,7 @@ package com.gordon_from_blumberg.game;
 public interface GameCore {
     /**
      * Calculates the game logic
+     * @return True if the game is running and false otherwise
      */
-    void update();
+    boolean update();
 }

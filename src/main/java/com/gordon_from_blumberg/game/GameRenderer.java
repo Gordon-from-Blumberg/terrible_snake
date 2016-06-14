@@ -9,7 +9,9 @@ package com.gordon_from_blumberg.game;
  * Created: 21:19 011 11.06.16
  */
 
-
+/**
+ * An object that implements this interface is responsible for rendering
+ */
 public interface GameRenderer {
     /**
      * Renders the game on the display

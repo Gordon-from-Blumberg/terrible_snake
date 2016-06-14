@@ -9,6 +9,9 @@ package com.gordon_from_blumberg.game;
  * Created: 16:10 011 11.06.16
  */
 
+/**
+ * Defines the main object of the game
+ */
 public interface Game {
     /**
      * Initializes the game

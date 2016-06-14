@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.game.subject;
  */
 
 /**
- * Specifies the game subject that must be updated every tick
+ * Defines the game subject that must be updated every tick
  */
 public interface GameSubject {
     void update();

@@ -9,5 +9,8 @@ package com.gordon_from_blumberg.game.subject;
  * Created: 0:22 013 13.06.16
  */
 
-public interface GameSubjectsContainer extends GameSubject {
+/**
+ * Defines the root subject for each game state
+ */
+public interface GameRootSubject extends GameSubject {
 }

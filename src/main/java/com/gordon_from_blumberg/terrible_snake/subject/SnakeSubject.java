@@ -10,6 +10,7 @@ package com.gordon_from_blumberg.terrible_snake.subject;
  */
 
 import com.gordon_from_blumberg.game.subject.GameSubject;
+import com.gordon_from_blumberg.terrible_snake.subject.game.SnakePartSubject;
 
 public interface SnakeSubject extends GameSubject {
     /**

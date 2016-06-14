@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.subject;
+package com.gordon_from_blumberg.terrible_snake.subject.game;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg

@@ -11,5 +11,5 @@ package com.gordon_from_blumberg.terrible_snake.subject;
 
 import com.gordon_from_blumberg.game.subject.GameSubject;
 
-public interface SnakePartSubject extends GameSubject {
+public interface SnakePartSubject {
 }

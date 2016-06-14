@@ -6,10 +6,10 @@ package com.gordon_from_blumberg.terrible_snake.subject;
  * Project: Terrible snake
  *
  * @author: gordon
- * Created: 22:26 012 12.06.16
+ * Created: 22:33 014 14.06.16
  */
 
-public class SnakePart extends AbstractGridSubject implements SnakePartSubject {
+public class Food extends AbstractGridSubject implements FoodSubject {
     @Override
     public void update() {
 

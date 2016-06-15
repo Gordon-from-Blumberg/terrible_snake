@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.subject.game.impl;
+package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,9 +9,9 @@ package com.gordon_from_blumberg.terrible_snake.subject.game.impl;
  * Created: 0:42 013 13.06.16
  */
 
-import com.gordon_from_blumberg.game.subject.GameRootSubject;
+import com.gordon_from_blumberg.game.entity.GameRootEntity;
 
-public class TerribleSnakeStage implements GameRootSubject {
+public class TerribleSnakeStage implements GameRootEntity {
     @Override
     public void update() {
 

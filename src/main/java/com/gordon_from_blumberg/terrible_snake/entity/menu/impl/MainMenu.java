@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.subject.menu.impl;
+package com.gordon_from_blumberg.terrible_snake.entity.menu.impl;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,9 +9,9 @@ package com.gordon_from_blumberg.terrible_snake.subject.menu.impl;
  * Created: 0:04 015 15.06.16
  */
 
-import com.gordon_from_blumberg.game.subject.GameRootSubject;
+import com.gordon_from_blumberg.game.entity.GameRootEntity;
 
-public class MainMenu implements GameRootSubject {
+public class MainMenu implements GameRootEntity {
     @Override
     public void update() {
 

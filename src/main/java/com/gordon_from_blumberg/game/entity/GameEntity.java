@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.game.subject;
+package com.gordon_from_blumberg.game.entity;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -10,8 +10,8 @@ package com.gordon_from_blumberg.game.subject;
  */
 
 /**
- * Defines the game subject that must be updated every tick
+ * Defines the game entity that must be updated every tick
  */
-public interface GameSubject {
+public interface GameEntity {
     void update();
 }

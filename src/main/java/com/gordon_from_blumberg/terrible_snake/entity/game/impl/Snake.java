@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.subject.game.impl;
+package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,13 +9,13 @@ package com.gordon_from_blumberg.terrible_snake.subject.game.impl;
  * Created: 20:48 012 12.06.16
  */
 
-import com.gordon_from_blumberg.terrible_snake.subject.SnakeSubject;
-import com.gordon_from_blumberg.terrible_snake.subject.game.SnakePartSubject;
+import com.gordon_from_blumberg.terrible_snake.entity.SnakeEntity;
+import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePartEntity;
 
 import java.util.LinkedList;
 
-public class Snake implements SnakeSubject {
-    private LinkedList<SnakePartSubject> parts;
+public class Snake implements SnakeEntity {
+    private LinkedList<SnakePartEntity> parts;
 
     @Override
     public void update() {
@@ -28,7 +28,7 @@ public class Snake implements SnakeSubject {
     }
 
     @Override
-    public SnakePartSubject getHead() {
+    public SnakePartEntity getHead() {
         return parts.getFirst();
     }
 }

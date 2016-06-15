@@ -10,15 +10,15 @@ package com.gordon_from_blumberg.terrible_snake;
  */
 
 import com.gordon_from_blumberg.game.GameCore;
-import com.gordon_from_blumberg.game.subject.GameRootSubject;
+import com.gordon_from_blumberg.game.entity.GameRootEntity;
 
 public class TerribleSnakeCore implements GameCore {
-    private GameRootSubject rootSubject;
+    private GameRootEntity rootEntity;
     private State currentState;
 
     @Override
     public boolean update() {
-        rootSubject.update();
+        rootEntity.update();
         return false;
     }
 

@@ -11,7 +11,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
 
 import com.gordon_from_blumberg.game.entity.GameEntity;
 
-public interface GridEntity extends GameEntity {
+public interface GridElementEntity extends GameEntity {
     /**
      * @return X coordinate of the entity on the grid
      */

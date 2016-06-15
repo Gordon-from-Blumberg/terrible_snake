@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.subject.game;
+package com.gordon_from_blumberg.terrible_snake.entity.game;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,7 +9,7 @@ package com.gordon_from_blumberg.terrible_snake.subject.game;
  * Created: 22:44 014 14.06.16
  */
 
-abstract public class AbstractGridSubject implements GridSubject {
+abstract public class AbstractGridElementEntity implements GridElementEntity {
     private int x;
     private int y;
 

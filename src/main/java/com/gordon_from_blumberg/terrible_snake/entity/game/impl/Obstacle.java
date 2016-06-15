@@ -6,13 +6,13 @@ package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
  * Project: Terrible snake
  *
  * @author: gordon
- * Created: 22:33 014 14.06.16
+ * Created: 22:30 015 15.06.16
  */
 
 import com.gordon_from_blumberg.terrible_snake.entity.game.AbstractGridElementEntity;
-import com.gordon_from_blumberg.terrible_snake.entity.game.FoodEntity;
+import com.gordon_from_blumberg.terrible_snake.entity.game.ObstacleEntity;
 
-public class Food extends AbstractGridElementEntity implements FoodEntity {
+public class Obstacle extends AbstractGridElementEntity implements ObstacleEntity {
     @Override
     public void update() {
 

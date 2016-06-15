@@ -17,6 +17,8 @@ import java.util.LinkedList;
 public class Snake implements SnakeEntity {
     private LinkedList<SnakePartEntity> parts;
 
+    private int direction;
+
     @Override
     public void update() {
 

@@ -11,9 +11,24 @@ package com.gordon_from_blumberg.terrible_snake.entity.menu.impl;
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+
 public class MainMenu implements GameRootEntity {
+    final private LinkedList<MouseEvent> events = new LinkedList<>();
+
     @Override
     public void update() {
+        while(!events.isEmpty()) {
+            events.pop();
+        }
+    }
 
+    public class MouseListener extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            events.add(e);
+        }
     }
 }

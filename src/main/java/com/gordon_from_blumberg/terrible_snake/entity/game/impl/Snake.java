@@ -9,7 +9,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
  * Created: 20:48 012 12.06.16
  */
 
-import com.gordon_from_blumberg.terrible_snake.entity.SnakeEntity;
+import com.gordon_from_blumberg.terrible_snake.entity.game.SnakeEntity;
 import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePartEntity;
 
 import java.util.LinkedList;

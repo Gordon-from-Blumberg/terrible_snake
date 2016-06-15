@@ -9,5 +9,8 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
  * Created: 22:32 015 15.06.16
  */
 
+/**
+ * Obstacle on the game field
+ */
 public interface ObstacleEntity {
 }

@@ -9,5 +9,8 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
  * Created: 21:42 012 12.06.16
  */
 
+/**
+ * Defines one part of the snake
+ */
 public interface SnakePartEntity {
 }

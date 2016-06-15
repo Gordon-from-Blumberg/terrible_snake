@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.entity;
+package com.gordon_from_blumberg.terrible_snake.entity.game;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -10,8 +10,10 @@ package com.gordon_from_blumberg.terrible_snake.entity;
  */
 
 import com.gordon_from_blumberg.game.entity.GameEntity;
-import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePartEntity;
 
+/**
+ * Snake
+ */
 public interface SnakeEntity extends GameEntity {
     /**
      * Returns length of the snake

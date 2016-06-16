@@ -6,13 +6,13 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
  * Project: Terrible snake
  *
  * @author: gordon
- * Created: 22:32 015 15.06.16
+ * Created: 0:50 017 17.06.16
  */
 
 import com.gordon_from_blumberg.game.entity.GameEntity;
 
 /**
- * Obstacle on the game field
+ * Defines the grid entity
  */
-public interface ObstacleEntity extends GameEntity {
+public interface GridEntity extends GameEntity {
 }

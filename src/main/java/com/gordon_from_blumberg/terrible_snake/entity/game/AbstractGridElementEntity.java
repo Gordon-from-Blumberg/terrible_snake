@@ -32,6 +32,4 @@ abstract public class AbstractGridElementEntity implements GridElementEntity {
     public void setY(int y) {
         this.y = y;
     }
-
-    abstract public void update();
 }

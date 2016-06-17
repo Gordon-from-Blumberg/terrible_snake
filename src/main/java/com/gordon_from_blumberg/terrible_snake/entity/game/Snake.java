@@ -14,7 +14,7 @@ import com.gordon_from_blumberg.game.entity.GameEntity;
 /**
  * Snake
  */
-public interface SnakeEntity extends GameEntity {
+public interface Snake extends GameEntity {
     /**
      * Returns length of the snake
      *
@@ -27,5 +27,5 @@ public interface SnakeEntity extends GameEntity {
      *
      * @return The snake head part
      */
-    SnakePartEntity getHead();
+    SnakePart getHead();
 }

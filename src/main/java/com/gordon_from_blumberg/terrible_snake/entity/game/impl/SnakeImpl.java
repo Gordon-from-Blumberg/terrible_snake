@@ -9,20 +9,16 @@ package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
  * Created: 20:48 012 12.06.16
  */
 
-import com.gordon_from_blumberg.terrible_snake.entity.game.SnakeEntity;
-import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePartEntity;
+import com.gordon_from_blumberg.terrible_snake.entity.game.Snake;
+import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePart;
 
 import java.util.LinkedList;
 
-public class Snake implements SnakeEntity {
-    private LinkedList<SnakePartEntity> parts;
+public class SnakeImpl implements Snake {
+    private LinkedList<SnakePart> parts;
 
+    private float speed;
     private int direction;
-
-    @Override
-    public void update() {
-
-    }
 
     @Override
     public int getLength() {
@@ -30,7 +26,12 @@ public class Snake implements SnakeEntity {
     }
 
     @Override
-    public SnakePartEntity getHead() {
+    public SnakePart getHead() {
         return parts.getFirst();
+    }
+
+    @Override
+    public void update() {
+
     }
 }

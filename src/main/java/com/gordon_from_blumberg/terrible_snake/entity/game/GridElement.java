@@ -12,20 +12,13 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
 import com.gordon_from_blumberg.game.entity.GameEntity;
 
 /**
- * Defines the element of the grid
+ * Defines the game element on the grid
  */
-public interface GridElementEntity extends GameEntity {
+public interface GridElement extends GameEntity {
     /**
      * @return X coordinate of the entity on the grid
      */
     int getX();
-
-    /**
-     * Sets new X coordinate of the entity on the grid
-     *
-     * @param x New value of X coordinate
-     */
-    void setX(int x);
 
     /**
      * @return Y coordinate of the entity on the grid
@@ -33,9 +26,7 @@ public interface GridElementEntity extends GameEntity {
     int getY();
 
     /**
-     * Sets new Y coordinate of the entity on the grid
-     *
-     * @param y New value of Y coordinate
+     * @return The grid cell object on which there is this grid element
      */
-    void setY(int y);
+    Grid.GridCell getGridCell();
 }

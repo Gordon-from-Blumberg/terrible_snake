@@ -9,10 +9,15 @@ package com.gordon_from_blumberg.terrible_snake.entity.game;
  * Created: 21:42 012 12.06.16
  */
 
-import com.gordon_from_blumberg.game.entity.GameEntity;
 
 /**
  * Defines one part of the snake
  */
-public interface SnakePartEntity extends GameEntity {
+public interface SnakePart extends GridElement {
+    /**
+     * Moves this snake part to the specified grid cell
+     *
+     * @param gridCell Destination grid cell
+     */
+    void moveTo(Grid.GridCell gridCell);
 }

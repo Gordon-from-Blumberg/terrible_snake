@@ -12,8 +12,12 @@ package com.gordon_from_blumberg.terrible_snake;
 import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.game.GameCore;
 import com.gordon_from_blumberg.game.GameRenderer;
+import com.gordon_from_blumberg.service.SettingsService;
+import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
 
 public class TerribleSnake implements Game, Configuration {
+
+    SettingsService settingsService;
 
     GameCore gameCore;
     GameRenderer gameRenderer;
@@ -22,6 +26,7 @@ public class TerribleSnake implements Game, Configuration {
 
     @Override
     public void init() {
+        settingsService = new SettingsServiceImpl();
         gameCore = new TerribleSnakeCore();
         gameRenderer = new TerribleSnakeRenderer();
 

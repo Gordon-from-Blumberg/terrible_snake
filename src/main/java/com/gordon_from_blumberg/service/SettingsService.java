@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.game.service;
+package com.gordon_from_blumberg.service;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -15,6 +15,9 @@ import com.gordon_from_blumberg.game.settings.Settings;
  * Service for work with settings
  */
 public interface SettingsService {
+    /**
+     * @return Current settings
+     */
     Settings getSettings();
 
 }

@@ -17,4 +17,9 @@ public class GraphicSettings {
      * Height of the game window in pixels
      */
     Integer screenHeight;
+
+    /**
+     * True, if in full screen mode
+     */
+    Boolean fullScreen;
 }

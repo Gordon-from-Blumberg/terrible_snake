@@ -1,7 +1,9 @@
 {
+    "gameSettings": {},
     "graphicSettings": {
         "screenWidth": 640,
-        "screenHeight": 480
+        "screenHeight": 480,
+        "fullScreen": false
     },
     "soundSettings": {}
 }

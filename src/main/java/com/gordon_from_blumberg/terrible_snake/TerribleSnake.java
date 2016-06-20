@@ -10,26 +10,38 @@ package com.gordon_from_blumberg.terrible_snake;
  */
 
 import com.gordon_from_blumberg.game.Game;
-import com.gordon_from_blumberg.game.GameCore;
-import com.gordon_from_blumberg.game.GameRenderer;
+import com.gordon_from_blumberg.game.entity.GameRootEntity;
+import com.gordon_from_blumberg.game.settings.GraphicSettings;
+import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.SettingsService;
+import com.gordon_from_blumberg.service.impl.DictionaryServiceImpl;
 import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
+import com.gordon_from_blumberg.terrible_snake.entity.game.impl.TerribleSnakeStageBuilder;
+import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuBuilder;
+
+import javax.swing.*;
 
 public class TerribleSnake implements Game, Configuration {
 
-    SettingsService settingsService;
+    private SettingsService settingsService;
+    private DictionaryService dictionaryService;
 
-    GameCore gameCore;
-    GameRenderer gameRenderer;
+    private TerribleSnakeStageBuilder stageBuilder = new TerribleSnakeStageBuilder();
+    private MainMenuBuilder menuBuilder = new MainMenuBuilder();
+
+    private GameRootEntity rootEntity;
+
+    private JFrame frame;
 
     private boolean running = false;
 
     @Override
     public void init() {
         settingsService = new SettingsServiceImpl();
-        gameCore = new TerribleSnakeCore();
-        gameRenderer = new TerribleSnakeRenderer();
+        dictionaryService = new DictionaryServiceImpl();
+        rootEntity = menuBuilder.build();
 
+        frame = createFrame(settingsService.getSettings().getGraphicSettings());
         running = true;
     }
 
@@ -40,12 +52,12 @@ public class TerribleSnake implements Game, Configuration {
 
     @Override
     public void updateGame() {
-        running = gameCore.update();
+        running = rootEntity.updateRoot();
     }
 
     @Override
     public void renderGame(float interpolation) {
-        gameRenderer.render(interpolation);
+        rootEntity.render(interpolation);
     }
 
     @Override
@@ -56,5 +68,17 @@ public class TerribleSnake implements Game, Configuration {
     @Override
     public int getMaxFrameSkip() {
         return MAX_FRAME_SKIP;
+    }
+
+    private JFrame createFrame(GraphicSettings graphicSettings) {
+        JFrame frame = new JFrame(dictionaryService.getMessage("frameTitle"));
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setIgnoreRepaint(true);
+        frame.setSize(graphicSettings.getScreenWidth(), graphicSettings.getScreenHeight());
+
+        frame.setVisible(true);
+
+        return frame;
     }
 }

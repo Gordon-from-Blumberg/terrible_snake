@@ -11,12 +11,11 @@ package com.gordon_from_blumberg.service.impl;
 
 import com.gordon_from_blumberg.game.settings.Settings;
 import com.gordon_from_blumberg.service.SettingsService;
+import com.gordon_from_blumberg.terrible_snake.Configuration;
 import com.gordon_from_blumberg.utils.JsonUtils;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class SettingsServiceImpl implements SettingsService {
+    private static final String SETTINGS_DIR = "src/main/settings/";
     private static final String SETTINGS_FILE_NAME = "settings.json";
 
     private Settings settings;
@@ -39,7 +38,6 @@ public class SettingsServiceImpl implements SettingsService {
     }
 
     private String getPath() {
-        Path absolutePath = Paths.get("").toAbsolutePath();
-        return absolutePath.resolve("src/main/settings/" + SETTINGS_FILE_NAME).toString();
+        return Configuration.PROJECT_DIR.resolve(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
     }
 }

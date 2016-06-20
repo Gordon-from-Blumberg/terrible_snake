@@ -22,4 +22,9 @@ public class ObstacleImpl extends AbstractGridElement implements Obstacle {
     public void update() {
 
     }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

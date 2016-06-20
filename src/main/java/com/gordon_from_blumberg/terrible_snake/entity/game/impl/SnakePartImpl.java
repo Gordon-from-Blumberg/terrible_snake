@@ -27,4 +27,9 @@ public class SnakePartImpl extends AbstractGridElement implements SnakePart {
     public void update() {
 
     }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

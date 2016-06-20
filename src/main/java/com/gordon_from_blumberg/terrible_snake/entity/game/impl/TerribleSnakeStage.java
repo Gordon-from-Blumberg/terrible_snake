@@ -16,4 +16,14 @@ public class TerribleSnakeStage implements GameRootEntity {
     public void update() {
 
     }
+
+    @Override
+    public boolean updateRoot() {
+        return false;
+    }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

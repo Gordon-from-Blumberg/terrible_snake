@@ -30,4 +30,9 @@ public class GridImpl implements Grid {
     public void update() {
 
     }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

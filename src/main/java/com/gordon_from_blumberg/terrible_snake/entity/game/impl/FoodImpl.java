@@ -22,4 +22,9 @@ public class FoodImpl extends AbstractGridElement implements Food {
     public void update() {
 
     }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

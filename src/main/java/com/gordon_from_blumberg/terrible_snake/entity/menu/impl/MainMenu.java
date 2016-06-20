@@ -25,6 +25,16 @@ public class MainMenu implements GameRootEntity {
         }
     }
 
+    @Override
+    public boolean updateRoot() {
+        return false;
+    }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
+
     public class MouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {

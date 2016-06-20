@@ -13,5 +13,15 @@ package com.gordon_from_blumberg.game.entity;
  * Defines the game entity that must be updated every tick
  */
 public interface GameEntity {
+    /**
+     * Updates the state of this entity on the current tick
+     */
     void update();
+
+    /**
+     * Renders this entity
+     *
+     * @param interpolation Interpolation for intermediate rendering
+     */
+    void render(float interpolation);
 }

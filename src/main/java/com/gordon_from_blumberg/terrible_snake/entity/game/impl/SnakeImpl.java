@@ -34,4 +34,9 @@ public class SnakeImpl implements Snake {
     public void update() {
 
     }
+
+    @Override
+    public void render(float interpolation) {
+
+    }
 }

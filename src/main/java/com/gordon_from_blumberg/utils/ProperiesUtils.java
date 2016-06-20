@@ -12,6 +12,7 @@ package com.gordon_from_blumberg.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 public class ProperiesUtils {
@@ -26,5 +27,20 @@ public class ProperiesUtils {
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getProperty(Properties properties, String key) {
+        String property = properties.getProperty(key);
+
+        try {
+            return new String(property.getBytes("ISO8859-1"));
+        } catch(NullPointerException | UnsupportedEncodingException e) {
+            System.out.print(e); //todo Use log
+            return "";
+        }
+    }
+
+    public static String getProperty(File file, String key) {
+        return getProperty(getProperties(file), key);
     }
 }

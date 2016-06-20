@@ -15,7 +15,6 @@ import com.gordon_from_blumberg.utils.ProperiesUtils;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import java.io.File;
-import java.util.Properties;
 
 public class DictionaryServiceImpl implements DictionaryService {
     private static final String DEFAULT_LANGUAGE = "en";
@@ -26,11 +25,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public String getMessage(String messageCode) {
-        Properties dictionaryProperties = ProperiesUtils.getProperties(getDictionaryFile());
-
-        String message = dictionaryProperties.getProperty(messageCode);
-
-        return message != null ? message : "";
+        return ProperiesUtils.getProperty(getDictionaryFile(), messageCode);
     }
 
     @Override

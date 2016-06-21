@@ -29,15 +29,30 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
+    public String getCurrentLanguage() {
+        return currentLanguage;
+    }
+
+    @Override
     public void setCurrentLanguage(String language) {
+        if (StringUtils.isBlank(language)) {
+            language = DEFAULT_LANGUAGE;
+        }
+
         currentLanguage = language;
     }
 
     private File getDictionaryFile() {
-        String dictionaryFileName = (StringUtils.isBlank(currentLanguage) || currentLanguage.equals(DEFAULT_LANGUAGE)) ?
+        String dictionaryFileName = currentLanguage.equals(DEFAULT_LANGUAGE) ?
                 DICTIONARY_PROPERTIES :
                 currentLanguage + "-" + DICTIONARY_PROPERTIES;
 
-        return Configuration.PROJECT_DIR.resolve(DICTIONARY_DIR + dictionaryFileName).toFile();
+        File dictionaryFile = Configuration.PROJECT_DIR.resolve(DICTIONARY_DIR + dictionaryFileName).toFile();
+
+        if (!dictionaryFile.exists()) {
+            throw new RuntimeException(String.format("File %s not found!", dictionaryFileName));
+        }
+
+        return dictionaryFile;
     }
 }

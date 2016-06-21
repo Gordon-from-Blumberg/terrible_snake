@@ -15,8 +15,20 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+/**
+ * Util class for work with properties files
+ */
 public class ProperiesUtils {
-    public static Properties getProperties(File file) {
+    private static final String PROPERTIES_ENCODING = "ISO8859-1";
+
+    /**
+     * Reads properties file
+     *
+     * @param file File with properties
+     * @return Properties object
+     * @throws RuntimeException if the IO exception is thrown during file reading
+     */
+    public static Properties readProperties(File file) {
         Properties properties = new Properties();
 
         try (FileInputStream inputStream = new FileInputStream(file)) {
@@ -29,18 +41,35 @@ public class ProperiesUtils {
         }
     }
 
+    /**
+     * Finds property in the passed properties object by the specified key
+     * @param properties Properties object
+     * @param key Property key
+     * @return Found property value or empty string
+     */
     public static String getProperty(Properties properties, String key) {
         String property = properties.getProperty(key);
 
-        try {
-            return new String(property.getBytes("ISO8859-1"));
-        } catch(NullPointerException | UnsupportedEncodingException e) {
-            System.out.print(e); //todo Use log
-            return "";
-        }
+        return property != null ?
+                convert(property) :
+                "";
     }
 
+    /**
+     * Finds property by the specified key in the specified file
+     * @param file Properties file
+     * @param key Property key
+     * @return Found property value or empty string
+     */
     public static String getProperty(File file, String key) {
-        return getProperty(getProperties(file), key);
+        return getProperty(readProperties(file), key);
+    }
+
+    private static String convert(String string) {
+        try {
+            return new String(string.getBytes(PROPERTIES_ENCODING));
+        } catch(UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

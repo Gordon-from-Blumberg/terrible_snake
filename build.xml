@@ -2,7 +2,30 @@
 <project name="terrible_snake" default="build" basedir=".">
     <property file="build.properties"/>
 
-    <target name="build">
+    <property name="src-dir" value="src/main/java"/>
+    <property name="output-classes-dir" value="classes"/>
 
+    <target name="build" depends="compile">
+        <jar basedir="${output-classes-dir}" destfile="${build-dir}/${ant.project.name}.jar">
+            <include name="**"/>
+        </jar>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${output-classes-dir}"/>
+        <javac encoding="${javac.encoding}"
+               debug="${compile.debug}"
+               srcdir="${src-dir}"
+               destdir="${output-classes-dir}"/>
+    </target>
+
+    <target name="copy-resources">
+        <mkdir dir="${build-dir}"/>
+        <mkdir dir="${build-dir}/settings"/>
+        <mkdir dir="${build-dir}/dictionary"/>
+
+        <copy todir="${build-dir}/settings">
+
+        </copy>
     </target>
 </project>

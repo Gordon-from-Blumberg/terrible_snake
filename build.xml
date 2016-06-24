@@ -7,7 +7,7 @@
     <property name="exlude.files" value="**/example.java"/>
 
     <fileset id="fileset.lib" dir="lib">
-        <include name="*.jar"/>
+        <include name="gson-2.6.2.jar"/>
     </fileset>
 
     <fileset id="settings" dir="src/main/settings">
@@ -25,6 +25,10 @@
     <target name="build" depends="compile, copy-resources">
         <jar basedir="${output.classes.dir}" destfile="${build.dir}/${ant.project.name}.jar">
             <include name="**"/>
+            <zipgroupfileset refid="fileset.lib"/>
+            <manifest>
+                <attribute name="Main-Class" value="com.gordon_from_blumberg.terrible_snake.Main"/>
+            </manifest>
         </jar>
     </target>
 

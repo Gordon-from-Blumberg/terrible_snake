@@ -13,9 +13,8 @@ import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.settings.GraphicSettings;
 import com.gordon_from_blumberg.service.DictionaryService;
+import com.gordon_from_blumberg.service.ServiceManager;
 import com.gordon_from_blumberg.service.SettingsService;
-import com.gordon_from_blumberg.service.impl.DictionaryServiceImpl;
-import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
 import com.gordon_from_blumberg.terrible_snake.entity.game.impl.TerribleSnakeStageBuilder;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuBuilder;
 
@@ -37,8 +36,8 @@ public class TerribleSnake implements Game, Configuration {
 
     @Override
     public void init() {
-        settingsService = new SettingsServiceImpl();
-        dictionaryService = new DictionaryServiceImpl();
+        settingsService = ServiceManager.getSettingsService();
+        dictionaryService = ServiceManager.getDictionaryService();
         rootEntity = menuBuilder.build();
 
         frame = createFrame(settingsService.getSettings().getGraphicSettings());

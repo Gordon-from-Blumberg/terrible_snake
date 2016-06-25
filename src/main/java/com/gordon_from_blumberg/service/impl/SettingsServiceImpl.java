@@ -10,34 +10,37 @@ package com.gordon_from_blumberg.service.impl;
  */
 
 import com.gordon_from_blumberg.game.settings.Settings;
+import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.SettingsService;
-import com.gordon_from_blumberg.terrible_snake.Configuration;
 import com.gordon_from_blumberg.utils.JsonUtils;
 
+/**
+ * Base implementation of the SettingsService
+ */
 public class SettingsServiceImpl implements SettingsService {
-    private static final String SETTINGS_DIR = "src/main/settings/";
+    private static final String SETTINGS_DIR = "settings/";
     private static final String SETTINGS_FILE_NAME = "settings.json";
 
     private Settings settings;
 
+    private PathService pathService;
+
     public SettingsServiceImpl() {
-        readSettings();
+        pathService = new PathServiceImpl();
+
+        settings = readSettings();
     }
 
     @Override
     public Settings getSettings() {
-        if (settings == null) {
-            readSettings();
-        }
-
         return settings;
     }
 
-    private void readSettings() {
-        settings = JsonUtils.readFromJsonFile(getPath(), Settings.class);
+    private Settings readSettings() {
+        return JsonUtils.readFromJsonFile(getPath(), Settings.class);
     }
 
     private String getPath() {
-        return Configuration.PROJECT_DIR.resolve(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
+        return pathService.getRunningDirPath().resolve(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
     }
 }

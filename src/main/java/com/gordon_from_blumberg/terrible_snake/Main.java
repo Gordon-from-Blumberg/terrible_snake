@@ -11,8 +11,14 @@ package com.gordon_from_blumberg.terrible_snake;
 
 import com.gordon_from_blumberg.game.Game;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
-    public static void main(String s[]) {
+    public static void main(String args[]) {
+        Map<String, String> argsMap = getArgsMap(args);
+
+        System.out.println("Property runningDir = " + System.getProperty("runningDir"));
         Game game = new TerribleSnake();
 
         final int SKIP_TICKS = 1000 / game.getTicksPerSecond();
@@ -36,10 +42,24 @@ public class Main {
 
             game.renderGame(interpolate(prevGameTick, SKIP_TICKS));
         }
+
     }
 
     private static float interpolate(long prevGameTick, int skipTicks) {
         float currentTick = (float) (System.currentTimeMillis() - prevGameTick);
         return currentTick / skipTicks;
+    }
+
+    private static Map<String, String> getArgsMap(String[] args) {
+        Map<String, String> argsMap = new HashMap<>();
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].startsWith("-") && i + 1 < args.length) {
+                argsMap.put(args[i].substring(1), args[++i]);
+            } else {
+                System.out.println(String.format("Ignored argument: %s", args[i]));
+            }
+        }
+
+        return argsMap;
     }
 }

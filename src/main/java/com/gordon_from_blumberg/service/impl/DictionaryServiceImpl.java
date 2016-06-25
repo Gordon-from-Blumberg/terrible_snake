@@ -10,18 +10,32 @@ package com.gordon_from_blumberg.service.impl;
  */
 
 import com.gordon_from_blumberg.service.DictionaryService;
-import com.gordon_from_blumberg.terrible_snake.Configuration;
+import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.utils.ProperiesUtils;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import java.io.File;
+import java.nio.file.Path;
 
+/**
+ * Base implementation of the DictionaryService
+ */
 public class DictionaryServiceImpl implements DictionaryService {
     private static final String DEFAULT_LANGUAGE = "en";
-    private static final String DICTIONARY_DIR = "src/main/dictionary/";
+    private static final String DICTIONARY_DIR = "dictionary/";
     private static final String DICTIONARY_PROPERTIES = "dictionary.properties";
 
-    private String currentLanguage = DEFAULT_LANGUAGE;
+    private Path dictionaryPath;
+    private String currentLanguage;
+
+    private PathService pathService;
+
+    public DictionaryServiceImpl() {
+        pathService = new PathServiceImpl();
+
+        currentLanguage = DEFAULT_LANGUAGE;
+        dictionaryPath = pathService.getRunningDirPath().resolve(DICTIONARY_DIR);
+    }
 
     @Override
     public String getMessage(String messageCode) {
@@ -47,7 +61,7 @@ public class DictionaryServiceImpl implements DictionaryService {
                 DICTIONARY_PROPERTIES :
                 currentLanguage + "-" + DICTIONARY_PROPERTIES;
 
-        File dictionaryFile = Configuration.PROJECT_DIR.resolve(DICTIONARY_DIR + dictionaryFileName).toFile();
+        File dictionaryFile = dictionaryPath.resolve(dictionaryFileName).toFile();
 
         if (!dictionaryFile.exists()) {
             throw new RuntimeException(String.format("File %s not found!", dictionaryFileName));

@@ -9,13 +9,18 @@ package com.gordon_from_blumberg.terrible_snake.entity.menu.impl;
  * Created: 0:04 015 15.06.16
  */
 
-import com.gordon_from_blumberg.game.entity.GameRootEntity;
+import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
+import com.gordon_from_blumberg.terrible_snake.drawer.AbstractDrawerFactory;
+import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 
-public class MainMenu implements GameRootEntity {
+public class MainMenuImpl
+        extends AbstractGameRootEntity
+        implements MainMenu {
+
     final private LinkedList<MouseEvent> events = new LinkedList<>();
 
     @Override
@@ -31,7 +36,7 @@ public class MainMenu implements GameRootEntity {
     }
 
     @Override
-    public void render(float interpolation) {
+    public void createDrawer(AbstractDrawerFactory drawerFactory) {
 
     }
 

@@ -9,9 +9,9 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
  * Created: 0:42 013 13.06.16
  */
 
-import com.gordon_from_blumberg.game.entity.GameRootEntity;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
-public class TerribleSnakeStage implements GameRootEntity {
+public class TerribleSnakeStageImpl implements TerribleSnakeStage {
     @Override
     public void update() {
 

@@ -9,6 +9,8 @@ package com.gordon_from_blumberg.game.entity;
  * Created: 0:22 013 13.06.16
  */
 
+import javax.swing.*;
+
 /**
  * Defines the root entity for each game state
  */
@@ -20,4 +22,11 @@ public interface GameRootEntity extends GameEntity {
      * @return Must return false for quit from the game, true otherwise.
      */
     boolean updateRoot();
+
+    /**
+     * Sets the component of the this root entity as contentPane of the passed frame
+     *
+     * @param frame
+     */
+    void updateFrame(JFrame frame);
 }

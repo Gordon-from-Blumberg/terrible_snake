@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.entity.game;
+package com.gordon_from_blumberg.terrible_snake.entity.stage;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg

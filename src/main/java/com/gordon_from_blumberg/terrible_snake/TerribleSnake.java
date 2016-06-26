@@ -15,8 +15,8 @@ import com.gordon_from_blumberg.game.settings.GraphicSettings;
 import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceManager;
 import com.gordon_from_blumberg.service.SettingsService;
-import com.gordon_from_blumberg.terrible_snake.entity.game.impl.TerribleSnakeStageBuilder;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuBuilder;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.impl.TerribleSnakeStageBuilder;
 
 import javax.swing.*;
 

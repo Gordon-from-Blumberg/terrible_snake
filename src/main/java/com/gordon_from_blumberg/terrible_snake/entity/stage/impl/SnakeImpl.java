@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
+package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,8 +9,8 @@ package com.gordon_from_blumberg.terrible_snake.entity.game.impl;
  * Created: 20:48 012 12.06.16
  */
 
-import com.gordon_from_blumberg.terrible_snake.entity.game.Snake;
-import com.gordon_from_blumberg.terrible_snake.entity.game.SnakePart;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.Snake;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.SnakePart;
 
 import java.util.LinkedList;
 

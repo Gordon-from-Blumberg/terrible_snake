@@ -14,7 +14,7 @@ import javax.swing.*;
 /**
  * Defines the root entity for each game state
  */
-public interface GameRootEntity extends GameEntity {
+public interface GameRootEntity {
     /**
      * This method must be called from the main loop and it must recursively call
      * the update method of all the children entities
@@ -24,7 +24,14 @@ public interface GameRootEntity extends GameEntity {
     boolean updateRoot();
 
     /**
-     * Sets the component of the this root entity as contentPane of the passed frame
+     * Recursively renders all actual entities
+     *
+     * @param interpolation Interpolation for intermediate rendering
+     */
+    void render(float interpolation);
+
+    /**
+     * Sets the applet of this root entity as contentPane of the passed frame
      *
      * @param frame
      */

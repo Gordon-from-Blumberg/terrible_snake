@@ -9,7 +9,6 @@ package com.gordon_from_blumberg.terrible_snake.drawer.stage;
  * Created: 23:37 026 26.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.AbstractGameRootEntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.impl.TerribleSnakeStage;
 
 /**

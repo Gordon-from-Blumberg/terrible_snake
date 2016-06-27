@@ -11,8 +11,6 @@ package com.gordon_from_blumberg.game.entity;
 
 import com.gordon_from_blumberg.game.drawer.GameEntityDrawer;
 
-import java.awt.*;
-
 /**
  * Abstract game entity
  */
@@ -20,17 +18,8 @@ public abstract class AbstractGameEntity implements GameEntity {
     protected GameEntityDrawer drawer;
 
     @Override
-    public void setDrawer(GameEntityDrawer drawer) {
-        this.drawer = drawer;
-    }
-
-    @Override
     public void render(float interpolation) {
         drawer.draw(interpolation, this);
     }
 
-    @Override
-    public Container getComponent() {
-        return drawer.getComponent();
-    }
 }

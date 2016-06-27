@@ -23,20 +23,19 @@ public class TerribleSnake implements Game, Configuration {
     private SettingsService settingsService;
     private DictionaryService dictionaryService;
 
-    private TerribleSnakeStageBuilder stageBuilder = new TerribleSnakeStageBuilder();
-    private MainMenuBuilder menuBuilder = new MainMenuBuilder();
-
     private GameRootEntity rootEntity;
 
     private JFrame frame;
 
     private boolean running = false;
 
-    @Override
-    public void init() {
+    public TerribleSnake() {
         settingsService = ServiceManager.getSettingsService();
         dictionaryService = ServiceManager.getDictionaryService();
-        rootEntity = menuBuilder.build();
+    }
+
+    @Override
+    public void init() {
 
         frame = createFrame(settingsService.getSettings().getGraphicSettings());
         running = true;

@@ -11,8 +11,6 @@ package com.gordon_from_blumberg.game.drawer;
 
 import com.gordon_from_blumberg.game.entity.GameEntity;
 
-import java.awt.*;
-
 /**
  * Defines object that draws the corresponding entity
  * @param <E> The game entity which is drawn by this drawer
@@ -26,8 +24,4 @@ public interface GameEntityDrawer<E extends GameEntity> {
      */
     void draw(float interpolation, E entity);
 
-    /**
-     * @return Component appropriate to the entity instance referencing to this drawer
-     */
-    Container getComponent();
 }

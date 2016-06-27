@@ -9,7 +9,6 @@ package com.gordon_from_blumberg.terrible_snake.drawer.menu;
  * Created: 23:35 026 26.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.AbstractGameRootEntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuImpl;
 
 /**

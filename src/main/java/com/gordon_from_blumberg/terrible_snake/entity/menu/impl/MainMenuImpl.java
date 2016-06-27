@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.menu.impl;
  */
 
 import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
-import com.gordon_from_blumberg.terrible_snake.drawer.AbstractDrawerFactory;
+import com.gordon_from_blumberg.terrible_snake.drawer.AbstractTerribleSnakeDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 
 import java.awt.event.MouseAdapter;
@@ -36,7 +36,7 @@ public class MainMenuImpl
     }
 
     @Override
-    public void createDrawer(AbstractDrawerFactory drawerFactory) {
+    public void createDrawer(AbstractTerribleSnakeDrawerFactory drawerFactory) {
 
     }
 

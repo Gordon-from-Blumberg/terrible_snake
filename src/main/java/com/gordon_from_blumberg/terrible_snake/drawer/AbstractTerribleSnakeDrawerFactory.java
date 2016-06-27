@@ -15,7 +15,7 @@ import com.gordon_from_blumberg.terrible_snake.drawer.stage.TerribleSnakeStageDr
 /**
  * Abstract factory pattern. Creates the drawer instances for entities
  */
-public abstract class AbstractDrawerFactory {
+public abstract class AbstractTerribleSnakeDrawerFactory {
     public abstract MainMenuDrawer createMainMenuDrawer();
 
     public abstract TerribleSnakeStageDrawer createTerribleSnakeStageDrawer();

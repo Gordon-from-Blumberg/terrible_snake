@@ -11,18 +11,13 @@ package com.gordon_from_blumberg.game.drawer;
 
 import com.gordon_from_blumberg.game.entity.GameEntity;
 
-import java.awt.*;
+import javax.swing.*;
 
 /**
  * Abstract game entity drawer
  */
 public abstract class AbstractGameEntityDrawer<E extends GameEntity>
+        extends JComponent
         implements GameEntityDrawer<E> {
 
-    protected Container component;
-
-    @Override
-    public Container getComponent() {
-        return component;
-    }
 }

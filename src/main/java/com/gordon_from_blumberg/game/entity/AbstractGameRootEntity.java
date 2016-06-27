@@ -14,12 +14,18 @@ import javax.swing.*;
 /**
  * Abstract root entity
  */
-public abstract class AbstractGameRootEntity
-        extends AbstractGameEntity
-        implements GameRootEntity {
+public abstract class AbstractGameRootEntity implements GameRootEntity {
+    protected JApplet applet;
+
+    /**
+     * Creates applet
+     */
+    public AbstractGameRootEntity() {
+        applet = new JApplet();
+    }
 
     @Override
     public void updateFrame(JFrame frame) {
-        frame.setContentPane(getComponent());
+        frame.setContentPane(applet);
     }
 }

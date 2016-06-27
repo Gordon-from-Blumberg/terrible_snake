@@ -9,10 +9,6 @@ package com.gordon_from_blumberg.game.entity;
  * Created: 20:22 012 12.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.GameEntityDrawer;
-
-import java.awt.*;
-
 /**
  * Defines the game entity that must be updated every tick
  */
@@ -29,13 +25,4 @@ public interface GameEntity {
      */
     void render(float interpolation);
 
-    /**
-     * @param drawer Sets the specified drawer to this entity object
-     */
-    void setDrawer(GameEntityDrawer drawer);
-
-    /**
-     * @return Component appropriate to this entity instance
-     */
-    Container getComponent();
 }

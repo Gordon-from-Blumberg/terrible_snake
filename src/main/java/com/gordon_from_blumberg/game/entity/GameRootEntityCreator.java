@@ -14,7 +14,7 @@ package com.gordon_from_blumberg.game.entity;
  *
  * @param <RE> Interface extending GameRootEntity for the particular game
  */
-public interface GameRootEntityCreator<RE extends GameEntity> {
+public interface GameRootEntityCreator<RE extends GameRootEntity> {
     /**
      * Resolves the passed code of the game state and creates appropriate root entity
      *

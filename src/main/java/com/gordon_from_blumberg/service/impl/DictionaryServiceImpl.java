@@ -16,6 +16,7 @@ import com.gordon_from_blumberg.utils.StringUtils;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.Properties;
 
 /**
  * Base implementation of the DictionaryService
@@ -25,8 +26,10 @@ public class DictionaryServiceImpl implements DictionaryService {
     private static final String DICTIONARY_DIR = "dictionary/";
     private static final String DICTIONARY_PROPERTIES = "dictionary.properties";
 
-    private Path dictionaryPath;
+    private final Path dictionaryPath;
+
     private String currentLanguage;
+    private Properties dictionaryProperties;
 
     public DictionaryServiceImpl() {
         currentLanguage = DEFAULT_LANGUAGE;
@@ -36,7 +39,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public String getMessage(String messageCode) {
-        return ProperiesUtils.getProperty(getDictionaryFile(), messageCode);
+        return StringUtils.defaultString(dictionaryProperties.getProperty(messageCode), "");
     }
 
     @Override
@@ -51,6 +54,7 @@ public class DictionaryServiceImpl implements DictionaryService {
         }
 
         currentLanguage = language;
+        dictionaryProperties = readDictionaryProperties();
     }
 
     private File getDictionaryFile() {
@@ -65,5 +69,9 @@ public class DictionaryServiceImpl implements DictionaryService {
         }
 
         return dictionaryFile;
+    }
+
+    private Properties readDictionaryProperties() {
+        return ProperiesUtils.readProperties(getDictionaryFile());
     }
 }

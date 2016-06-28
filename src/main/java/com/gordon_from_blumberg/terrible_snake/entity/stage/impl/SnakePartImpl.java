@@ -9,11 +9,17 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
  * Created: 22:26 012 12.06.16
  */
 
+import com.gordon_from_blumberg.game.drawer.AbstractGameEntityDrawer;
+import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.AbstractGridElement;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.Grid;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.SnakePart;
 
+import java.awt.*;
+
 public class SnakePartImpl extends AbstractGridElement implements SnakePart {
+    private AbstractGameEntityDrawer<SnakePart> drawer;
+
     public SnakePartImpl(Grid.GridCell gridCell) {
         super(gridCell);
     }
@@ -30,6 +36,12 @@ public class SnakePartImpl extends AbstractGridElement implements SnakePart {
 
     @Override
     public void render(float interpolation) {
+        drawer.draw(interpolation, this);
+    }
 
+    @Override
+    public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
+        drawer = drawerFactory.createDrawerFor(SnakePart.class);
+        parentDrawer.add(drawer);
     }
 }

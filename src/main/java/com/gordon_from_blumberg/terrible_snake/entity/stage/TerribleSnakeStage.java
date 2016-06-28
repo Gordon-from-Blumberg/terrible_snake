@@ -10,10 +10,9 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage;
  */
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
-import com.gordon_from_blumberg.terrible_snake.entity.TerribleSnakeEntity;
 
 /**
  * Defines stage of Terrible Snake
  */
-public interface TerribleSnakeStage extends GameRootEntity, TerribleSnakeEntity {
+public interface TerribleSnakeStage extends GameRootEntity {
 }

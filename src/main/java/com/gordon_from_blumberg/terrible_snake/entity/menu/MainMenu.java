@@ -10,10 +10,9 @@ package com.gordon_from_blumberg.terrible_snake.entity.menu;
  */
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
-import com.gordon_from_blumberg.terrible_snake.entity.TerribleSnakeEntity;
 
 /**
  * Defines main menu
  */
-public interface MainMenu extends GameRootEntity, TerribleSnakeEntity {
+public interface MainMenu extends GameRootEntity {
 }

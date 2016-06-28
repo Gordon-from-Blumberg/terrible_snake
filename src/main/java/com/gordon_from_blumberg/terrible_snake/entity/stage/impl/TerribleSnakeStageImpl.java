@@ -9,13 +9,18 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
  * Created: 0:42 013 13.06.16
  */
 
+import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
+import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
+import com.gordon_from_blumberg.game.entity.GameEntity;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
-public class TerribleSnakeStageImpl implements TerribleSnakeStage {
-    @Override
-    public void update() {
+import java.util.List;
 
-    }
+public class TerribleSnakeStageImpl
+        extends AbstractGameRootEntity
+        implements TerribleSnakeStage {
+
+    private List<GameEntity> children;
 
     @Override
     public boolean updateRoot() {
@@ -25,5 +30,11 @@ public class TerribleSnakeStageImpl implements TerribleSnakeStage {
     @Override
     public void render(float interpolation) {
 
+    }
+
+    @Override
+    public void createDrawers(GameEntityDrawerFactory drawerFactory) {
+        children.stream()
+                .forEach(gameEntity -> gameEntity.createDrawer(drawerFactory, applet));
     }
 }

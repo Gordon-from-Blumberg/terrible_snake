@@ -31,7 +31,7 @@ public class ObstacleImpl extends AbstractGridElement implements Obstacle {
 
     @Override
     public void render(float interpolation) {
-
+        drawer.draw(interpolation);
     }
 
     @Override

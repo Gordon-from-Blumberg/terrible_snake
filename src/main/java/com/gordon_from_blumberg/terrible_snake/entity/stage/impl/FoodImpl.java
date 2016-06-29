@@ -31,7 +31,7 @@ public class FoodImpl extends AbstractGridElement implements Food {
 
     @Override
     public void render(float interpolation) {
-        drawer.draw(interpolation, this);
+        drawer.draw(interpolation);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class GridImpl implements Grid {
 
     @Override
     public void render(float interpolation) {
-        drawer.draw(interpolation, this);
+        drawer.draw(interpolation);
     }
 
     @Override

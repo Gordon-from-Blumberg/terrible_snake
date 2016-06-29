@@ -11,18 +11,25 @@ package com.gordon_from_blumberg.terrible_snake;
 
 import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
+import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
 import com.gordon_from_blumberg.game.settings.GraphicSettings;
 import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceManager;
 import com.gordon_from_blumberg.service.SettingsService;
+import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
 
 import javax.swing.*;
 
 public class TerribleSnake implements Game, Configuration {
 
+    private static final String DEFAULT_STATE = "menu";
+
     private SettingsService settingsService;
     private DictionaryService dictionaryService;
 
+    private GameRootEntityFactory rootEntityFactory;
+
+    private String state;
     private GameRootEntity rootEntity;
 
     private JFrame frame;
@@ -32,12 +39,17 @@ public class TerribleSnake implements Game, Configuration {
     public TerribleSnake() {
         settingsService = ServiceManager.getSettingsService();
         dictionaryService = ServiceManager.getDictionaryService();
+
+        rootEntityFactory = new TerribleSnakeRootEntityFactory();
     }
 
     @Override
     public void init() {
-
         frame = createFrame(settingsService.getSettings().getGraphicSettings());
+
+        state = DEFAULT_STATE;
+        rootEntity = rootEntityFactory.create(state);
+
         running = true;
     }
 

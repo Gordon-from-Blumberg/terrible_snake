@@ -20,8 +20,11 @@ public interface GameEntityDrawer<E extends GameEntity> {
      * Draws the entity
      *
      * @param interpolation Interpolation
-     * @param entity Entity for drawing
      */
-    void draw(float interpolation, E entity);
+    void draw(float interpolation);
 
+    /**
+     * @return The entity object that uses this drawer
+     */
+    E getEntity();
 }

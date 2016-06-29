@@ -41,7 +41,7 @@ public class SnakeImpl implements Snake {
 
     @Override
     public void render(float interpolation) {
-        drawer.draw(interpolation, this);
+        drawer.draw(interpolation);
     }
 
     @Override

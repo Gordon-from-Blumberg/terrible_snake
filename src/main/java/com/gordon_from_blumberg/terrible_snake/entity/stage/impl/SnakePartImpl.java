@@ -36,7 +36,7 @@ public class SnakePartImpl extends AbstractGridElement implements SnakePart {
 
     @Override
     public void render(float interpolation) {
-        drawer.draw(interpolation, this);
+        drawer.draw(interpolation);
     }
 
     @Override

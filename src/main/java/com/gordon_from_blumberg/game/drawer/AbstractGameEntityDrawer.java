@@ -20,4 +20,15 @@ public abstract class AbstractGameEntityDrawer<E extends GameEntity>
         extends JComponent
         implements GameEntityDrawer<E> {
 
+    private E entity;
+
+    AbstractGameEntityDrawer(E entity) {
+        super();
+        this.entity = entity;
+    }
+
+    @Override
+    public E getEntity() {
+        return entity;
+    }
 }

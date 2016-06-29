@@ -10,13 +10,13 @@ package com.gordon_from_blumberg.terrible_snake.entity.impl;
  */
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
-import com.gordon_from_blumberg.game.entity.GameRootEntityCreator;
+import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
 
 /**
  * Creator of the Terrible Snake root entities
  */
-public class TerribleSnakeRootEntityCreator
-        implements GameRootEntityCreator<GameRootEntity> {
+public class TerribleSnakeRootEntityFactory
+        implements GameRootEntityFactory {
 
     @Override
     public GameRootEntity create(String stateCode) {

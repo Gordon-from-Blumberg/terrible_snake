@@ -26,23 +26,26 @@ public class Main {
 
         long nextGameTick = System.currentTimeMillis();
         long prevGameTick = nextGameTick - SKIP_TICKS;
+        try {
+            game.init();
 
-        game.init();
+            while(game.isRunning()) {
+                int skippedFrames = 0;
 
-        while(game.isRunning()) {
-            int skippedFrames = 0;
+                while(System.currentTimeMillis() > nextGameTick && skippedFrames < MAX_FRAME_SKIP) {
+                    game.updateGame();
 
-            while (System.currentTimeMillis() > nextGameTick && skippedFrames < MAX_FRAME_SKIP) {
-                game.updateGame();
+                    prevGameTick = nextGameTick;
+                    nextGameTick += SKIP_TICKS;
+                    skippedFrames++;
+                }
 
-                prevGameTick = nextGameTick;
-                nextGameTick += SKIP_TICKS;
-                skippedFrames++;
+                game.renderGame(interpolate(prevGameTick, SKIP_TICKS));
             }
-
-            game.renderGame(interpolate(prevGameTick, SKIP_TICKS));
+        } catch(Throwable e) {
+            e.printStackTrace();
+            System.exit(1);
         }
-
     }
 
     private static float interpolate(long prevGameTick, int skipTicks) {

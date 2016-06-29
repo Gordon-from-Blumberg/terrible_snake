@@ -11,6 +11,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.impl;
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
+import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuImpl;
 
 /**
  * Creator of the Terrible Snake root entities
@@ -20,6 +21,6 @@ public class TerribleSnakeRootEntityFactory
 
     @Override
     public GameRootEntity create(String stateCode) {
-        return null;
+        return new MainMenuImpl();
     }
 }

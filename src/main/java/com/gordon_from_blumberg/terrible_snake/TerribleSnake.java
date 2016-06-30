@@ -17,6 +17,7 @@ import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceManager;
 import com.gordon_from_blumberg.service.SettingsService;
 import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
+import com.gordon_from_blumberg.utils.StringUtils;
 
 import javax.swing.*;
 
@@ -29,7 +30,7 @@ public class TerribleSnake implements Game, Configuration {
 
     private GameRootEntityFactory rootEntityFactory;
 
-    private String state;
+    private String currentState;
     private GameRootEntity rootEntity;
 
     private JFrame frame;
@@ -47,8 +48,7 @@ public class TerribleSnake implements Game, Configuration {
     public void init() {
         frame = createFrame(settingsService.getSettings().getGraphicSettings());
 
-        state = DEFAULT_STATE;
-        rootEntity = rootEntityFactory.create(state);
+        updateState(DEFAULT_STATE);
 
         running = true;
     }
@@ -60,7 +60,15 @@ public class TerribleSnake implements Game, Configuration {
 
     @Override
     public void updateGame() {
-        running = rootEntity.updateRoot();
+        String newState = rootEntity.updateRoot();
+
+        if (!currentState.equals(newState)) {
+            if (StringUtils.isBlank(newState)) {
+                running = false;
+            } else {
+                updateState(newState);
+            }
+        }
     }
 
     @Override
@@ -76,6 +84,11 @@ public class TerribleSnake implements Game, Configuration {
     @Override
     public int getMaxFrameSkip() {
         return MAX_FRAME_SKIP;
+    }
+
+    private void updateState(String newState) {
+        currentState = newState;
+        rootEntity = rootEntityFactory.create(currentState);
     }
 
     private JFrame createFrame(GraphicSettings graphicSettings) {

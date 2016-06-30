@@ -23,8 +23,8 @@ public class TerribleSnakeStageImpl
     private List<GameEntity> children;
 
     @Override
-    public boolean updateRoot() {
-        return false;
+    public String updateRoot() {
+        return "";
     }
 
     @Override

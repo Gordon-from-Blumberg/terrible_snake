@@ -24,11 +24,11 @@ public class MainMenuImpl
     final private LinkedList<MouseEvent> events = new LinkedList<>();
 
     @Override
-    public boolean updateRoot() {
+    public String updateRoot() {
         while(!events.isEmpty()) {
             events.pop();
         }
-        return true;
+        return "menu";
     }
 
     @Override

@@ -21,9 +21,10 @@ public interface GameRootEntity {
      * This method must be called from the main loop and it must recursively call
      * the update method of all the children entities
      *
-     * @return Must return false for quit from the game, true otherwise.
+     * @return State key. If it differs from current state the new root entity
+     * will be created. Return blank string or null to stop the game
      */
-    boolean updateRoot();
+    String updateRoot();
 
     /**
      * Recursively renders all actual entities

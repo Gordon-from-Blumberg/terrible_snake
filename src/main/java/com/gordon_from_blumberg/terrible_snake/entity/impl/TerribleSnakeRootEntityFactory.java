@@ -11,9 +11,8 @@ package com.gordon_from_blumberg.terrible_snake.entity.impl;
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
-import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuImpl;
-import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.impl.TerribleSnakeStageImpl;
 import javafx.util.Pair;
 
 import java.util.HashMap;
@@ -32,23 +31,46 @@ public class TerribleSnakeRootEntityFactory
     //todo 1) remove the string magic constants
     //todo 2) use Reflection API instead map
     public TerribleSnakeRootEntityFactory() {
-        STATE_ROOT_ENTITY_CLASS_MAP.put("menu", MainMenu.class);
-        STATE_ROOT_ENTITY_CLASS_MAP.put("stage", TerribleSnakeStage.class);
+        STATE_ROOT_ENTITY_CLASS_MAP.put("menu", MainMenuImpl.class);
+        STATE_ROOT_ENTITY_CLASS_MAP.put("stage", TerribleSnakeStageImpl.class);
     }
 
     @Override
     public GameRootEntity create(String stateCode) {
         Pair<String, Map<String, String>> stateKeyArgsPair = parseStateCode(stateCode);
-        //return STATE_ROOT_ENTITY_CLASS_MAP.get(stateKeyArgsPair.getKey()).newInstance(stateKeyArgsPair.getValue());
-        return new MainMenuImpl();
+        System.out.println(String.format("parseStateCode has returned %s for stateCode %s", stateKeyArgsPair, stateCode));
+
+        try {
+            return STATE_ROOT_ENTITY_CLASS_MAP.get(stateKeyArgsPair.getKey()).getConstructor(Map.class).newInstance(stateKeyArgsPair.getValue());
+        } catch(ReflectiveOperationException e) {
+            throw new RuntimeException(
+                    String.format("Couldn't create the root entity for stateCode %s", stateCode),
+                    e
+            );
+        }
     }
 
+    //todo need test
     private Pair<String, Map<String, String>> parseStateCode(String stateCode) {
-        String argsPattern = "[a-zA-Z]+=[\\w]+";
-        Pattern stateCodeRegex = Pattern.compile(String.format("^([a-zA-Z]+)(\\?(%s)(&(%s))*)?$", argsPattern, argsPattern));
-        Matcher matcher = stateCodeRegex.matcher(stateCode);
-        matcher.find();
+        final String keyPattern = "^[a-zA-Z]+";
+        final String argsPattern = "([a-zA-Z]+)=([\\w]+)";
+        final String generalPattern = String.format("%s(\\?%s(&%s)*)?$", keyPattern, argsPattern, argsPattern);
 
-        return new Pair<>("", new HashMap<>());
+        if (!Pattern.matches(generalPattern, stateCode)) {
+            throw new IllegalArgumentException(String.format("Illegal state code %s!", stateCode));
+        }
+
+        String key;
+        Matcher keyMatcher = Pattern.compile(keyPattern).matcher(stateCode);
+        keyMatcher.find();
+        key = keyMatcher.group();
+
+        Map<String, String> argsMap = new HashMap<>();
+        Matcher argsMatcher = Pattern.compile(argsPattern).matcher(stateCode);
+        while(argsMatcher.find()) {
+            argsMap.put(argsMatcher.group(1), argsMatcher.group(2));
+        }
+
+        return new Pair<>(key, argsMap);
     }
 }

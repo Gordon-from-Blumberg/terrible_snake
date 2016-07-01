@@ -15,12 +15,16 @@ import com.gordon_from_blumberg.game.entity.GameEntity;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
 import java.util.List;
+import java.util.Map;
 
 public class TerribleSnakeStageImpl
         extends AbstractGameRootEntity
         implements TerribleSnakeStage {
 
     private List<GameEntity> children;
+
+    public TerribleSnakeStageImpl(Map<String, String> args) {
+    }
 
     @Override
     public String updateRoot() {

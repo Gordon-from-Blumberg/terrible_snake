@@ -16,12 +16,17 @@ import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class MainMenuImpl
         extends AbstractGameRootEntity
         implements MainMenu {
 
     final private LinkedList<MouseEvent> events = new LinkedList<>();
+
+    public MainMenuImpl(Map<String, String> args) {
+        System.out.println("Main menu is created!");
+    }
 
     @Override
     public String updateRoot() {

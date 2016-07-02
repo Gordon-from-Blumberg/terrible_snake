@@ -3,19 +3,32 @@
     <property file="build.properties"/>
 
     <property name="src.dir" value="src"/>
+    <property name="src.resources.dir" value="${src.dir}/main/resources"/>
+    <property name="build.resources.dir" value="${build.dir}/resources"/>
     <property name="output.classes.dir" value="classes"/>
     <property name="exlude.files" value="**/example.java"/>
 
     <fileset id="fileset.lib" dir="lib">
         <include name="gson-2.6.2.jar"/>
+        <include name="groovy-2.4.6.jar"/>
     </fileset>
 
-    <fileset id="settings" dir="src/main/settings">
+    <fileset id="settings" dir="${src.resources.dir}/settings">
         <include name="*.json"/>
     </fileset>
 
-    <fileset id="dictionary" dir="src/main/dictionary">
+    <fileset id="dictionary" dir="${src.resources.dir}/dictionary">
         <include name="*dictionary.properties"/>
+    </fileset>
+
+    <fileset id="groovy" dir="${src.resources.dir}/groovy">
+        <include name="*.groovy"/>
+    </fileset>
+
+    <fileset id="resources" dir="${src.resources.dir}">
+        <include name="settings/*.json"/>
+        <include name="dictionary/*dictionary.properties"/>
+        <include name="groovy/*.groovy"/>
     </fileset>
 
     <path id="classpath">
@@ -48,14 +61,10 @@
 
     <target name="copy-resources">
         <mkdir dir="${build.dir}"/>
-        <mkdir dir="${build.dir}/settings"/>
-        <mkdir dir="${build.dir}/dictionary"/>
+        <mkdir dir="${build.resources.dir}"/>
 
-        <copy todir="${build.dir}/settings">
-            <fileset refid="settings"/>
-        </copy>
-        <copy todir="${build.dir}/dictionary">
-            <fileset refid="dictionary"/>
+        <copy todir="${build.resources.dir}">
+            <fileset refid="resources"/>
         </copy>
     </target>
 </project>

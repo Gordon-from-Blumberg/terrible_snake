@@ -40,6 +40,16 @@ public class PathServiceImpl implements PathService {
         return runningDir.resolve(path);
     }
 
+    @Override
+    public Path getResourceDir() {
+        return runningDir.resolve(RESOURCES_DIR);
+    }
+
+    @Override
+    public Path getResourceDir(String resource) {
+        return getResourceDir().resolve(resource);
+    }
+
     private static Path getRunningDir() {
         String runningDirProperty = System.getProperty("runningDir");
         return Paths.get(StringUtils.isBlank(runningDirProperty) ?

@@ -15,6 +15,8 @@ import java.nio.file.Path;
  * Service for the path processing
  */
 public interface PathService {
+    String RESOURCES_DIR = "resources/";
+
     /**
      * Returns the Path object appropriate to the running directory
      *
@@ -36,4 +38,19 @@ public interface PathService {
      * @return Path object
      */
     Path getPath(String path);
+
+    /**
+     * Returns the Path object appropriate to the resources directory
+     *
+     * @return Path of the resources directory
+     */
+    Path getResourceDir();
+
+    /**
+     * Returns the Path object appropriate to the particular resource directory
+     *
+     * @param resource Resource directory name
+     * @return Path of the particular resource directory
+     */
+    Path getResourceDir(String resource);
 }

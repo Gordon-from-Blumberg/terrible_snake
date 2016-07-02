@@ -34,7 +34,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     public DictionaryServiceImpl() {
         currentLanguage = DEFAULT_LANGUAGE;
         dictionaryPath = ServiceManager.getPathService()
-                .getPath(DICTIONARY_DIR);
+                .getResourceDir(DICTIONARY_DIR);
         dictionaryProperties = readDictionaryProperties();
     }
 

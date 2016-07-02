@@ -29,7 +29,7 @@ public class GroovyServiceImpl implements GroovyService {
     private GroovyScriptEngine engine;
 
     public GroovyServiceImpl() {
-        groovyPath = ServiceManager.getPathService().getPath(GROOVY_DIR);
+        groovyPath = ServiceManager.getPathService().getResourceDir(GROOVY_DIR);
         try {
             engine = new GroovyScriptEngine(new String[] {groovyPath.toString()});
         } catch(IOException e) {

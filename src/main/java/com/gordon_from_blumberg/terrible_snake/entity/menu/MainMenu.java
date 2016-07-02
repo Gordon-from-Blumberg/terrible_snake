@@ -15,4 +15,5 @@ import com.gordon_from_blumberg.game.entity.GameRootEntity;
  * Defines main menu
  */
 public interface MainMenu extends GameRootEntity {
+    String STATE_KEY = "menu";
 }

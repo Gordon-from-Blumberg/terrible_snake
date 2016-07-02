@@ -17,13 +17,14 @@ import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceManager;
 import com.gordon_from_blumberg.service.SettingsService;
 import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
+import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import javax.swing.*;
 
 public class TerribleSnake implements Game, Configuration {
 
-    private static final String DEFAULT_STATE = "menu";
+    private static final String DEFAULT_STATE = MainMenu.STATE_KEY;
 
     private SettingsService settingsService;
     private DictionaryService dictionaryService;

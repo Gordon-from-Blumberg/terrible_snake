@@ -11,7 +11,9 @@ package com.gordon_from_blumberg.terrible_snake.entity.impl;
 
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
+import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.impl.MainMenuImpl;
+import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.impl.TerribleSnakeStageImpl;
 import javafx.util.Pair;
 
@@ -28,11 +30,10 @@ public class TerribleSnakeRootEntityFactory
 
     private final Map<String, Class<? extends GameRootEntity>> STATE_ROOT_ENTITY_CLASS_MAP = new HashMap<>();
 
-    //todo 1) remove the string magic constants
-    //todo 2) use Reflection API instead map
+    //todo 1) use Reflection API instead map
     public TerribleSnakeRootEntityFactory() {
-        STATE_ROOT_ENTITY_CLASS_MAP.put("menu", MainMenuImpl.class);
-        STATE_ROOT_ENTITY_CLASS_MAP.put("stage", TerribleSnakeStageImpl.class);
+        STATE_ROOT_ENTITY_CLASS_MAP.put(MainMenu.STATE_KEY, MainMenuImpl.class);
+        STATE_ROOT_ENTITY_CLASS_MAP.put(TerribleSnakeStage.STATE_KEY, TerribleSnakeStageImpl.class);
     }
 
     @Override

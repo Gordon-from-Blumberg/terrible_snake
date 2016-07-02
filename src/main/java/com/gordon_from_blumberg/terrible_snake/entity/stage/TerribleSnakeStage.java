@@ -15,4 +15,5 @@ import com.gordon_from_blumberg.game.entity.GameRootEntity;
  * Defines stage of Terrible Snake
  */
 public interface TerribleSnakeStage extends GameRootEntity {
+    String STATE_KEY = "stage";
 }

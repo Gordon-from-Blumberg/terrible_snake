@@ -37,7 +37,7 @@ public class SettingsServiceImpl implements SettingsService {
     }
 
     private String getPath() {
-        return ServiceManager.getPathService().getRunningDirPath()
-                .resolve(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
+        return ServiceManager.getPathService()
+                .getPath(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
     }
 }

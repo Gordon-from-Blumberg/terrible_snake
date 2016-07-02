@@ -35,6 +35,11 @@ public class PathServiceImpl implements PathService {
         return runningDir.toAbsolutePath().toString();
     }
 
+    @Override
+    public Path getPath(String path) {
+        return runningDir.resolve(path);
+    }
+
     private static Path getRunningDir() {
         String runningDirProperty = System.getProperty("runningDir");
         return Paths.get(StringUtils.isBlank(runningDirProperty) ?

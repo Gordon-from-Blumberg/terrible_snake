@@ -10,6 +10,7 @@ package com.gordon_from_blumberg.service;
  */
 
 import com.gordon_from_blumberg.service.impl.DictionaryServiceImpl;
+import com.gordon_from_blumberg.service.impl.GroovyServiceImpl;
 import com.gordon_from_blumberg.service.impl.PathServiceImpl;
 import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
 
@@ -22,6 +23,7 @@ public class ServiceManager {
     private static PathService pathService = new PathServiceImpl();
     private static DictionaryService dictionaryService = new DictionaryServiceImpl();
     private static SettingsService settingsService = new SettingsServiceImpl();
+    private static GroovyService groovyService = new GroovyServiceImpl();
 
     public static PathService getPathService() {
         return pathService;
@@ -33,5 +35,9 @@ public class ServiceManager {
 
     public static SettingsService getSettingsService() {
         return settingsService;
+    }
+
+    public static GroovyService getGroovyService() {
+        return groovyService;
     }
 }

@@ -18,9 +18,9 @@ public interface GameEntityDrawerFactory {
     /**
      * Creates the instance of the specified drawer type
      *
-     * @param entityType Class object of the required drawer interface
+     * @param entity Entity for drawing
      * @param <E>        Interface of the required drawer
-     * @return Created drawer for the specified type of entity
+     * @return Created drawer for the specified entity
      */
-    <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(Class<E> entityType);
+    <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(E entity);
 }

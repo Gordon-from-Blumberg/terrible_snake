@@ -17,7 +17,7 @@ public class TerribleSnakeEntityDrawerFactory implements GameEntityDrawerFactory
     private final String DRAWER_PACKAGE = getClass().getPackage().toString();
 
     @Override
-    public <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(Class<E> entityType) {
+    public <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(E entity) {
         System.out.println("DRAWER_PACKAGE = " + DRAWER_PACKAGE);
         return null;
     }

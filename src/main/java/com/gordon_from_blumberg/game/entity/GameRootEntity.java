@@ -45,4 +45,11 @@ public interface GameRootEntity {
      * @param frame Frame update
      */
     void updateFrame(JFrame frame);
+
+    /**
+     * Returns the state key that has been used for creating of this root entity
+     *
+     * @return State key of this root entity
+     */
+    String getStateCode();
 }

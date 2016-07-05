@@ -67,6 +67,7 @@ public class TerribleSnakeRootEntityFactory
         key = keyMatcher.group();
 
         Map<String, String> argsMap = new HashMap<>();
+        argsMap.put("stateCode", stateCode); //todo remove magic string constant
         Matcher argsMatcher = Pattern.compile(argsPattern).matcher(stateCode);
         while(argsMatcher.find()) {
             argsMap.put(argsMatcher.group(1), argsMatcher.group(2));

@@ -12,8 +12,10 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
 import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
 import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameEntity;
+import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,24 +23,26 @@ public class TerribleSnakeStageImpl
         extends AbstractGameRootEntity
         implements TerribleSnakeStage {
 
-    private List<GameEntity> children;
+    private List<GameEntity> children = new ArrayList<>();
 
     public TerribleSnakeStageImpl(Map<String, String> args) {
+        super(args);
+        createDrawers(new TerribleSnakeEntityDrawerFactory("tetris")); //todo remove magic string constant
     }
 
     @Override
     public String updateRoot() {
-        return "";
+        children.forEach(GameEntity::update);
+        return getStateCode();
     }
 
     @Override
     public void render(float interpolation) {
-
+        children.forEach(child -> child.render(interpolation));
     }
 
     @Override
     public void createDrawers(GameEntityDrawerFactory drawerFactory) {
-        children.stream()
-                .forEach(gameEntity -> gameEntity.createDrawer(drawerFactory, applet));
+        children.forEach(gameEntity -> gameEntity.createDrawer(drawerFactory, applet));
     }
 }

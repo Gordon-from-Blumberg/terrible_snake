@@ -36,7 +36,7 @@ public class ObstacleImpl extends AbstractGridElement implements Obstacle {
 
     @Override
     public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(Obstacle.class);
+        drawer = drawerFactory.createDrawerFor(Obstacle.class, this);
         parentDrawer.add(drawer);
     }
 }

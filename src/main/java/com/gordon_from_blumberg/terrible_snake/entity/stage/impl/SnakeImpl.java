@@ -46,7 +46,7 @@ public class SnakeImpl implements Snake {
 
     @Override
     public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(Snake.class);
+        drawer = drawerFactory.createDrawerFor(Snake.class, this);
         parentDrawer.add(drawer);
         parts.stream()
                 .forEach(part -> part.createDrawer(drawerFactory, drawer));

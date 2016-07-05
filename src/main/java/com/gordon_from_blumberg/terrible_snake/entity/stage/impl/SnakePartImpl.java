@@ -41,7 +41,7 @@ public class SnakePartImpl extends AbstractGridElement implements SnakePart {
 
     @Override
     public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(SnakePart.class);
+        drawer = drawerFactory.createDrawerFor(SnakePart.class, this);
         parentDrawer.add(drawer);
     }
 }

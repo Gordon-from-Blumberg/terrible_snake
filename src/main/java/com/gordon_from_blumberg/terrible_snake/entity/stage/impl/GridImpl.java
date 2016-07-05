@@ -43,7 +43,7 @@ public class GridImpl implements Grid {
 
     @Override
     public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(Grid.class);
+        drawer = drawerFactory.createDrawerFor(Grid.class, this);
         parentDrawer.add(drawer);
     }
 }

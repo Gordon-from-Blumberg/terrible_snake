@@ -10,22 +10,30 @@ package com.gordon_from_blumberg.game.entity;
  */
 
 import javax.swing.*;
+import java.util.Map;
 
 /**
  * Abstract root entity
  */
 public abstract class AbstractGameRootEntity implements GameRootEntity {
+    private String stateCode;
     protected JApplet applet;
 
     /**
      * Creates applet
      */
-    public AbstractGameRootEntity() {
+    public AbstractGameRootEntity(Map<String, String> args) {
         applet = new JApplet();
+        stateCode = args.get("stateCode");
     }
 
     @Override
     public void updateFrame(JFrame frame) {
         frame.setContentPane(applet);
+    }
+
+    @Override
+    public String getStateCode() {
+        return stateCode;
     }
 }

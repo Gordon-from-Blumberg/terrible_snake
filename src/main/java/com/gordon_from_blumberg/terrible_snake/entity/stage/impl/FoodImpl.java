@@ -36,7 +36,7 @@ public class FoodImpl extends AbstractGridElement implements Food {
 
     @Override
     public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(Food.class);
+        drawer = drawerFactory.createDrawerFor(Food.class, this);
         parentDrawer.add(drawer);
     }
 }

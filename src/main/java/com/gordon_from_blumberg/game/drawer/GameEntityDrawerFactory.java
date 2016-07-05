@@ -16,11 +16,12 @@ import com.gordon_from_blumberg.game.entity.GameEntity;
  */
 public interface GameEntityDrawerFactory {
     /**
-     * Creates the instance of the specified drawer type
+     * Creates the drawer instance of the specified entity type
      *
+     * @param entityType Type of the entity for drawing
      * @param entity Entity for drawing
-     * @param <E>        Interface of the required drawer
+     * @param <E> Interface of the entity for drawing
      * @return Created drawer for the specified entity
      */
-    <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(E entity);
+    <E extends GameEntity> AbstractGameEntityDrawer<E> createDrawerFor(Class<E> entityType, E entity);
 }

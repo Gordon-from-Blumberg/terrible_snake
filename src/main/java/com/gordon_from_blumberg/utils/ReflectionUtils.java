@@ -9,28 +9,37 @@ package com.gordon_from_blumberg.utils;
  * Created: 22:55 002 02.07.16
  */
 
+import javafx.util.Pair;
+
 import java.util.Arrays;
 
 /**
  * Util methods for Reflection API using
  */
 public class ReflectionUtils {
+    public static final String DELIMITER = ".";
+
     /**
      * Creates the new instance of the specified class
      *
      * @param className Class name
-     * @param params    Parameters for the constructor
+     * @param params    Array of the pairs with class-object. Classes must be the same parameters
+     *                  of the constructor. Objects are the parameters for the constructor
      * @param <T>       Expected type
      * @return New instance
      */
     @SuppressWarnings("unchecked")
-    public static <T> T newInstanceOf(String className, Object[] params) {
+    public static <T> T newInstanceOf(String className, Pair<Class<?>, Object>... params) {
         Class[] paramClasses = Arrays.stream(params)
-                .map(Object::getClass)
+                .map(Pair::getKey)
                 .toArray(Class[]::new);
 
+        Object[] args = Arrays.stream(params)
+                .map(Pair::getValue)
+                .toArray();
+
         try {
-            return (T) getClass(className).getConstructor(paramClasses).newInstance(params);
+            return (T) getClass(className).getConstructor(paramClasses).newInstance(args);
         } catch(ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
@@ -76,5 +85,27 @@ public class ReflectionUtils {
         } catch(ClassNotFoundException e) {
             throw new RuntimeException(String.format("Class %s is not found!", fullName), e);
         }
+    }
+
+    /**
+     * Returns the path relative to the package. For example, this method will return "my_package.MyClass"
+     * for the com.my_company.my_project.my_package.MyClass class and the "my_project" package
+     *
+     * @param clazz       Class
+     * @param packageName Package which relative to the path is required
+     * @return Relative path
+     * @throws IllegalArgumentException If the specified class is not relative to specified package
+     */
+    public static String getRelativeClassPath(Class<?> clazz, String packageName) {
+        String[] paths = clazz.getName().split("\\" + DELIMITER);
+
+        for (int i = 0; i < paths.length; i++) {
+            if (packageName.equals(paths[i])) {
+                return String.join(DELIMITER, Arrays.copyOfRange(paths, i + 1, paths.length));
+            }
+        }
+
+        throw new IllegalArgumentException(String.format("Class %s is not relative to package %s!",
+                clazz.getName(), packageName));
     }
 }

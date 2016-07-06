@@ -22,7 +22,7 @@ public abstract class AbstractGameEntityDrawer<E extends GameEntity>
 
     private E entity;
 
-    AbstractGameEntityDrawer(E entity) {
+    public AbstractGameEntityDrawer(E entity) {
         super();
         this.entity = entity;
     }

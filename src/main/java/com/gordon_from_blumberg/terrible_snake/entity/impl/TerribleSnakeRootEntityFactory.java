@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
  */
 public class TerribleSnakeRootEntityFactory
         implements GameRootEntityFactory {
+    private static final String STATE_CODE = "stateCode";
 
     private final Map<String, Class<? extends GameRootEntity>> STATE_ROOT_ENTITY_CLASS_MAP = new HashMap<>();
 
@@ -67,7 +68,7 @@ public class TerribleSnakeRootEntityFactory
         key = keyMatcher.group();
 
         Map<String, String> argsMap = new HashMap<>();
-        argsMap.put("stateCode", stateCode); //todo remove magic string constant
+        argsMap.put(STATE_CODE, stateCode);
         Matcher argsMatcher = Pattern.compile(argsPattern).matcher(stateCode);
         while(argsMatcher.find()) {
             argsMap.put(argsMatcher.group(1), argsMatcher.group(2));

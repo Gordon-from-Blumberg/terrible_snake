@@ -12,6 +12,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
 import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
 import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameEntity;
+import com.gordon_from_blumberg.terrible_snake.Configuration;
 import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
@@ -27,7 +28,7 @@ public class TerribleSnakeStageImpl
 
     public TerribleSnakeStageImpl(Map<String, String> args) {
         super(args);
-        createDrawers(new TerribleSnakeEntityDrawerFactory("tetris")); //todo remove magic string constant
+        createDrawers(new TerribleSnakeEntityDrawerFactory(Configuration.DEFAULT_DRAWER_TYPE));
     }
 
     @Override

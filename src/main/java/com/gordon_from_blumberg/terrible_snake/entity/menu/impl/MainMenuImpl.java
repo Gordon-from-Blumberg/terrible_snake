@@ -11,6 +11,7 @@ package com.gordon_from_blumberg.terrible_snake.entity.menu.impl;
 
 import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
 import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
+import com.gordon_from_blumberg.terrible_snake.Configuration;
 import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MenuContainer;
@@ -24,13 +25,13 @@ public class MainMenuImpl
         extends AbstractGameRootEntity
         implements MainMenu {
 
-    final private LinkedList<MouseEvent> events = new LinkedList<>();
-    final private MenuContainer container;
+    private final LinkedList<MouseEvent> events = new LinkedList<>();
+    private final MenuContainer container;
 
     public MainMenuImpl(Map<String, String> args) {
         super(args);
         container = new MenuContainerImpl();
-        createDrawers(new TerribleSnakeEntityDrawerFactory("tetris")); //todo remove magic string constant
+        createDrawers(new TerribleSnakeEntityDrawerFactory(Configuration.DEFAULT_DRAWER_TYPE));
         System.out.println("Main menu is created!");
     }
 

@@ -20,10 +20,10 @@ import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
  */
 public class ServiceManager {
     //todo Use reflection API and dependency injection
-    private static PathService pathService = new PathServiceImpl();
-    private static DictionaryService dictionaryService = new DictionaryServiceImpl();
-    private static SettingsService settingsService = new SettingsServiceImpl();
-    private static GroovyService groovyService = new GroovyServiceImpl();
+    private static final PathService pathService = new PathServiceImpl();
+    private static final DictionaryService dictionaryService = new DictionaryServiceImpl();
+    private static final SettingsService settingsService = new SettingsServiceImpl();
+    private static final GroovyService groovyService = new GroovyServiceImpl();
 
     public static PathService getPathService() {
         return pathService;

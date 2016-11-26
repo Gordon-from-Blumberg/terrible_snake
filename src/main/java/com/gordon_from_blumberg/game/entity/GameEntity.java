@@ -9,9 +9,6 @@ package com.gordon_from_blumberg.game.entity;
  * Created: 20:22 012 12.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
-
-import java.awt.*;
 
 /**
  * Defines the game entity that must be updated every tick
@@ -28,12 +25,4 @@ public interface GameEntity {
      * @param interpolation Interpolation for intermediate rendering
      */
     void render(float interpolation);
-
-    /**
-     * Uses the passed drawer factory for creating of drawer
-     *
-     * @param drawerFactory Current drawer factory
-     * @param parentDrawer  The drawer object of the parent entity
-     */
-    void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer);
 }

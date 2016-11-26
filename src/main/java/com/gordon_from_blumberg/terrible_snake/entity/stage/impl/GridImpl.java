@@ -9,17 +9,10 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
  * Created: 1:03 017 17.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.AbstractGameEntityDrawer;
-import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
+import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerHolder;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.Grid;
 
-import java.awt.*;
-
-/**
- *
- */
 public class GridImpl implements Grid {
-    private AbstractGameEntityDrawer<Grid> drawer;
     private Grid.GridCell[][] grid;
 
     @Override
@@ -38,12 +31,6 @@ public class GridImpl implements Grid {
 
     @Override
     public void render(float interpolation) {
-        drawer.draw(interpolation);
-    }
-
-    @Override
-    public void createDrawer(GameEntityDrawerFactory drawerFactory, Container parentDrawer) {
-        drawer = drawerFactory.createDrawerFor(Grid.class, this);
-        parentDrawer.add(drawer);
+        TerribleSnakeEntityDrawerHolder.getDrawer().drawGrid(this, interpolation);
     }
 }

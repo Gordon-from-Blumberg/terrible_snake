@@ -9,11 +9,9 @@ package com.gordon_from_blumberg.terrible_snake.entity.stage.impl;
  * Created: 0:42 013 13.06.16
  */
 
-import com.gordon_from_blumberg.game.drawer.GameEntityDrawerFactory;
 import com.gordon_from_blumberg.game.entity.AbstractGameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameEntity;
-import com.gordon_from_blumberg.terrible_snake.Configuration;
-import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
+import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerHolder;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.TerribleSnakeStage;
 
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ public class TerribleSnakeStageImpl
 
     public TerribleSnakeStageImpl(Map<String, String> args) {
         super(args);
-        createDrawers(new TerribleSnakeEntityDrawerFactory(Configuration.DEFAULT_DRAWER_TYPE));
     }
 
     @Override
@@ -39,11 +36,8 @@ public class TerribleSnakeStageImpl
 
     @Override
     public void render(float interpolation) {
+        TerribleSnakeEntityDrawerHolder.getDrawer().drawStage(this, interpolation);
         children.forEach(child -> child.render(interpolation));
     }
 
-    @Override
-    public void createDrawers(GameEntityDrawerFactory drawerFactory) {
-        children.forEach(gameEntity -> gameEntity.createDrawer(drawerFactory, applet));
-    }
 }

@@ -16,7 +16,7 @@ import java.util.Map;
  * Abstract root entity
  */
 public abstract class AbstractGameRootEntity implements GameRootEntity {
-    private String stateCode;
+    private final String stateCode;
     protected JApplet applet;
 
     /**

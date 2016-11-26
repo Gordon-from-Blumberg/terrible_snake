@@ -26,7 +26,7 @@ public interface GridElement extends GameEntity {
     int getY();
 
     /**
-     * @return The grid cell object on which there is this grid element
+     * @return The grid cell object on which this grid element stays
      */
     Grid.GridCell getGridCell();
 }

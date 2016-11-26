@@ -23,5 +23,8 @@ public interface GameRootEntityFactory {
     GameRootEntity create(String stateCode);
 
     class UnknownStateException extends IllegalArgumentException {
+        public UnknownStateException(String message) {
+            super(message);
+        }
     }
 }

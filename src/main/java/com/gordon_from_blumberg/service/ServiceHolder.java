@@ -18,7 +18,7 @@ import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
  * Keeps the instances of services
  * and implements the static methods for the access to them
  */
-public class ServiceManager {
+public class ServiceHolder {
     //todo Use reflection API and dependency injection
     private static final PathService pathService = new PathServiceImpl();
     private static final DictionaryService dictionaryService = new DictionaryServiceImpl();

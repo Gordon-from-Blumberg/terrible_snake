@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.service.impl;
  */
 
 import com.gordon_from_blumberg.service.GroovyService;
-import com.gordon_from_blumberg.service.ServiceManager;
+import com.gordon_from_blumberg.service.ServiceHolder;
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
 
@@ -29,7 +29,7 @@ public class GroovyServiceImpl implements GroovyService {
     private GroovyScriptEngine engine;
 
     public GroovyServiceImpl() {
-        groovyPath = ServiceManager.getPathService().getResourceDir(GROOVY_DIR);
+        groovyPath = ServiceHolder.getPathService().getResourceDir(GROOVY_DIR);
         try {
             engine = new GroovyScriptEngine(new String[] {groovyPath.toString()});
         } catch(IOException e) {

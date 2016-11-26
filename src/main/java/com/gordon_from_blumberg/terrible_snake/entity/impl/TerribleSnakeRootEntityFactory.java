@@ -59,7 +59,7 @@ public class TerribleSnakeRootEntityFactory
         final String generalPattern = String.format("%s(\\?%s(&%s)*)?$", keyPattern, argsPattern, argsPattern);
 
         if (!Pattern.matches(generalPattern, stateCode)) {
-            throw new IllegalArgumentException(String.format("Illegal state code %s!", stateCode));
+            throw new UnknownStateException(String.format("Illegal state code %s!", stateCode));
         }
 
         String key;

@@ -16,8 +16,8 @@ import com.gordon_from_blumberg.game.settings.GraphicSettings;
 import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.service.SettingsService;
+import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
 import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerHolder;
-import com.gordon_from_blumberg.terrible_snake.drawer.tetris.TetrisTerribleSnakeEntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.utils.StringUtils;
@@ -53,8 +53,9 @@ public class TerribleSnake implements Game, Configuration {
 
         updateState(DEFAULT_STATE);
 
-        //todo use config or settings
-        TerribleSnakeEntityDrawerHolder.setDrawer(new TetrisTerribleSnakeEntityDrawer());
+        TerribleSnakeEntityDrawerHolder.setDrawer(
+                TerribleSnakeEntityDrawerFactory.createDrawer(DEFAULT_DRAWER_TYPE)
+        );
 
         running = true;
     }

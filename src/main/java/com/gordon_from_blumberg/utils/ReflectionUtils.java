@@ -30,6 +30,10 @@ public class ReflectionUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T> T newInstanceOf(String className, Pair<Class<?>, Object>... params) {
+        return newInstanceOf((Class<T>) getClass(className), params);
+    }
+
+    public static <T> T newInstanceOf(Class<T> clazz, Pair<Class<?>, Object>... params) {
         Class[] paramClasses = Arrays.stream(params)
                 .map(Pair::getKey)
                 .toArray(Class[]::new);
@@ -39,7 +43,7 @@ public class ReflectionUtils {
                 .toArray();
 
         try {
-            return (T) getClass(className).getConstructor(paramClasses).newInstance(args);
+            return clazz.getConstructor(paramClasses).newInstance(args);
         } catch(ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
@@ -54,8 +58,19 @@ public class ReflectionUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T> T newInstanceOf(String className) {
+        return newInstanceOf((Class<T>) getClass(className));
+    }
+
+    /**
+     * Creates the new instance of the passed class
+     *
+     * @param clazz Target class
+     * @param <T>   Expected type
+     * @return New instance
+     */
+    public static <T> T newInstanceOf(Class<T> clazz) {
         try {
-            return (T) getClass(className).newInstance();
+            return clazz.newInstance();
         } catch(ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }

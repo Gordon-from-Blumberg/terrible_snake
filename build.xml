@@ -11,6 +11,7 @@
     <fileset id="fileset.lib" dir="lib">
         <include name="gson-2.6.2.jar"/>
         <include name="groovy-2.4.6.jar"/>
+        <include name="reflections-0.9.10.jar"/>
     </fileset>
 
     <fileset id="settings" dir="${src.resources.dir}/settings">

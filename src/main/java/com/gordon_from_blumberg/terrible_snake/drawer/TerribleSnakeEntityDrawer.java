@@ -9,13 +9,14 @@ package com.gordon_from_blumberg.terrible_snake.drawer;
  * Created: 21:01 026 26.11.16
  */
 
+import com.gordon_from_blumberg.game.drawer.GameEntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MenuContainer;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.*;
 
 /**
  * Defines render methods for each entity
  */
-public interface TerribleSnakeEntityDrawer {
+public interface TerribleSnakeEntityDrawer extends GameEntityDrawer {
     void drawMenuContainer(MenuContainer entity, float interpolation);
 
     void drawStage(TerribleSnakeStage entity, float interpolation);

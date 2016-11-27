@@ -9,11 +9,15 @@ package com.gordon_from_blumberg.terrible_snake.drawer.tetris;
  * Created: 22:43 026 26.11.16
  */
 
+import com.gordon_from_blumberg.game.drawer.EntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawer;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MenuContainer;
 import com.gordon_from_blumberg.terrible_snake.entity.stage.*;
 
+@EntityDrawer(name = TetrisTerribleSnakeEntityDrawer.NAME)
 public class TetrisTerribleSnakeEntityDrawer implements TerribleSnakeEntityDrawer {
+    protected static final String NAME = "tetris";
+
     @Override
     public void drawMenuContainer(MenuContainer entity, float interpolation) {
 
@@ -42,5 +46,10 @@ public class TetrisTerribleSnakeEntityDrawer implements TerribleSnakeEntityDrawe
     @Override
     public void drawObstacle(Obstacle entity, float interpolation) {
 
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

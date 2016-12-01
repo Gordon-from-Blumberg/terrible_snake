@@ -11,7 +11,6 @@ package com.gordon_from_blumberg.terrible_snake.drawer;
 
 import com.gordon_from_blumberg.game.drawer.EntityDrawer;
 import com.gordon_from_blumberg.utils.ReflectionUtils;
-import org.reflections.Reflections;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,9 +63,7 @@ public class TerribleSnakeEntityDrawerFactory {
     private static void init() {
         System.out.print(String.format("Drawer package = %s", DRAWER_PACKAGE));
 
-        Reflections reflections = new Reflections(DRAWER_PACKAGE);
-        reflections.getTypesAnnotatedWith(EntityDrawer.class)
-                .forEach(TerribleSnakeEntityDrawerFactory::addDrawer);
+
     }
 
     private static String getName(Class<? extends TerribleSnakeEntityDrawer> clazz) {

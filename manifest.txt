@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: com.gordon_from_blumberg.Main
+Bundle-Name: Terrible Snake
+Bundle-Description: Terrible Snake - classic game Snake
+Bundle-Version: 1.0.0

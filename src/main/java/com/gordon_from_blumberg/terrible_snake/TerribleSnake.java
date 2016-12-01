@@ -16,13 +16,22 @@ import com.gordon_from_blumberg.game.settings.GraphicSettings;
 import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.service.SettingsService;
-import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerFactory;
-import com.gordon_from_blumberg.terrible_snake.drawer.TerribleSnakeEntityDrawerHolder;
 import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import javax.swing.*;
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.stream.Collectors;
 
 public class TerribleSnake implements Game, Configuration {
 
@@ -53,9 +62,37 @@ public class TerribleSnake implements Game, Configuration {
 
         updateState(DEFAULT_STATE);
 
-        TerribleSnakeEntityDrawerHolder.setDrawer(
-                TerribleSnakeEntityDrawerFactory.createDrawer(DEFAULT_DRAWER_TYPE)
-        );
+//        TerribleSnakeEntityDrawerHolder.setDrawer(
+//                TerribleSnakeEntityDrawerFactory.createDrawer(DEFAULT_DRAWER_TYPE)
+//        );
+
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        try {
+            String resourceName = getClass().getPackage().getName().replace(".", "/");
+            URL url = classLoader.getResource(resourceName);
+
+            String externalUrl = url.toExternalForm();
+
+            URLConnection urlConnection = url.openConnection();
+
+            JarFile jarFile = ((JarURLConnection) urlConnection).getJarFile();
+            Path path = Paths.get(jarFile.getName());
+
+            Enumeration<JarEntry> jarEntries = jarFile.entries();
+            List<JarEntry> entryList = new ArrayList<>();
+
+            while(jarEntries.hasMoreElements()) {
+                entryList.add(jarEntries.nextElement());
+            }
+
+            List<JarEntry> onlyDirectories = entryList.stream().filter(JarEntry::isDirectory).collect(Collectors.toList());
+            List<JarEntry> onlyFiles = entryList.stream().filter(entry -> !entry.isDirectory()).collect(Collectors.toList());
+
+            System.out.print(url);
+        } catch(Throwable e) {
+
+        }
 
         running = true;
     }

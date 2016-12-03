@@ -10,22 +10,13 @@ package com.gordon_from_blumberg;
  */
 
 import com.gordon_from_blumberg.game.Game;
-import com.gordon_from_blumberg.jar_loader.JarLoader;
+import com.gordon_from_blumberg.jar_loader.JarClassLoader;
 import com.gordon_from_blumberg.terrible_snake.TerribleSnake;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main {
-    private static File runningDir;
 
     public static void main(String args[]) {
-        Map<String, String> argsMap = getArgsMap(args);
-
-        System.out.println("Property runningDir = " + System.getProperty("runningDir"));
         System.out.println("Property java.system.class.loader = " + System.getProperty("java.system.class.loader"));
-        System.out.println("Property classpath = " + System.getProperty("classpath"));
 
         init();
 
@@ -63,37 +54,17 @@ public class Main {
         return currentTick / skipTicks;
     }
 
-    private static Map<String, String> getArgsMap(String[] args) {
-        Map<String, String> argsMap = new HashMap<>();
-        for (int i = 0; i < args.length; i++) {
-            if (args[i].startsWith("-") && i + 1 < args.length) {
-                argsMap.put(args[i].substring(1), args[++i]);
-            } else {
-                System.out.println(String.format("Ignored argument: %s", args[i]));
-            }
-        }
-
-        return argsMap;
-    }
-
     private static void init() {
         try {
-            findRunningDir();
 
-            JarLoader jarLoader = new JarLoader(runningDir);
+            JarClassLoader jarClassLoader = (JarClassLoader) ClassLoader.getSystemClassLoader();
 
-            jarLoader.addJarToClassLoader("lib/lib.jar");
+            jarClassLoader.findJars();
+
+            System.out.println();
 
         } catch(Throwable e) {
-            System.out.print(e);
+            e.printStackTrace();
         }
-    }
-
-    private static void findRunningDir() {
-        String pathToMainClass = Main.class.getResource("").getPath();
-        String pathToJar = pathToMainClass.substring(0, pathToMainClass.indexOf("!/"));
-        runningDir = new File(pathToJar).getParentFile();
-        System.out.print(String.format("Running dir = %s", runningDir));
-        System.out.println();
     }
 }

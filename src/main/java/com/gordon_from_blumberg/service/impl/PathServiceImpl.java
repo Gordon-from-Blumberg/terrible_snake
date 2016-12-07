@@ -9,6 +9,7 @@ package com.gordon_from_blumberg.service.impl;
  * Created: 20:16 025 25.06.16
  */
 
+import com.gordon_from_blumberg.jar_loader.JarClassLoader;
 import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.utils.StringUtils;
 
@@ -51,7 +52,7 @@ public class PathServiceImpl implements PathService {
     }
 
     private static Path getRunningDir() {
-        String runningDirProperty = System.getProperty("runningDir");
+        String runningDirProperty = JarClassLoader.getRunningDir();
         return Paths.get(StringUtils.isBlank(runningDirProperty) ?
                 "" : runningDirProperty);
     }

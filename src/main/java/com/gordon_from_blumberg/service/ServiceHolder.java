@@ -13,31 +13,47 @@ import com.gordon_from_blumberg.service.impl.DictionaryServiceImpl;
 import com.gordon_from_blumberg.service.impl.GroovyServiceImpl;
 import com.gordon_from_blumberg.service.impl.PathServiceImpl;
 import com.gordon_from_blumberg.service.impl.SettingsServiceImpl;
+import com.gordon_from_blumberg.utils.ReflectionUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Keeps the instances of services
  * and implements the static methods for the access to them
  */
-public class ServiceHolder {
-    //todo Use reflection API and dependency injection
-    private static final PathService pathService = new PathServiceImpl();
-    private static final DictionaryService dictionaryService = new DictionaryServiceImpl();
-    private static final SettingsService settingsService = new SettingsServiceImpl();
-    private static final GroovyService groovyService = new GroovyServiceImpl();
+public final class ServiceHolder {
 
-    public static PathService getPathService() {
-        return pathService;
+    private static final Map<Class<?>, Object> serviceMap = new HashMap<>();
+
+    public static void init() {
+        getServices().entrySet()
+                .stream()
+                .forEach(entry -> serviceMap.put(
+                                entry.getKey(),
+                                ReflectionUtils.newInstanceOf(entry.getValue())
+                        )
+                );
     }
 
-    public static DictionaryService getDictionaryService() {
-        return dictionaryService;
+    @SuppressWarnings("unchecked")
+    public static <S> S getService(Class<S> serviceType) {
+        Object service = serviceMap.get(serviceType);
+
+        if (service == null) {
+            throw new NullPointerException(String.format("Service does not exist for class %s", serviceType.getName()));
+        }
+
+        return (S) service;
     }
 
-    public static SettingsService getSettingsService() {
-        return settingsService;
-    }
-
-    public static GroovyService getGroovyService() {
-        return groovyService;
+    //todo get this map from config
+    private static Map<Class<?>, Class<?>> getServices() {
+        Map<Class<?>, Class<?>> services = new HashMap<>();
+        services.put(DictionaryService.class, DictionaryServiceImpl.class);
+        services.put(GroovyService.class, GroovyServiceImpl.class);
+        services.put(PathService.class, PathServiceImpl.class);
+        services.put(SettingsService.class, SettingsServiceImpl.class);
+        return services;
     }
 }

@@ -10,6 +10,7 @@ package com.gordon_from_blumberg.service.impl;
  */
 
 import com.gordon_from_blumberg.game.settings.Settings;
+import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.service.SettingsService;
 import com.gordon_from_blumberg.utils.JsonUtils;
@@ -37,7 +38,7 @@ public class SettingsServiceImpl implements SettingsService {
     }
 
     private String getPath() {
-        return ServiceHolder.getPathService()
+        return ServiceHolder.getService(PathService.class)
                 .getResourceDir(SETTINGS_DIR + SETTINGS_FILE_NAME).toString();
     }
 }

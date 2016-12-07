@@ -11,9 +11,10 @@ package com.gordon_from_blumberg;
 
 import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.jar_loader.JarClassLoader;
+import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.terrible_snake.TerribleSnake;
 
-public class Main {
+public final class Main {
 
     public static void main(String args[]) {
         System.out.println("Property java.system.class.loader = " + System.getProperty("java.system.class.loader"));
@@ -27,6 +28,7 @@ public class Main {
 
         long nextGameTick = System.currentTimeMillis();
         long prevGameTick = nextGameTick - SKIP_TICKS;
+
         try {
             game.init();
 
@@ -57,14 +59,22 @@ public class Main {
     private static void init() {
         try {
 
-            JarClassLoader jarClassLoader = (JarClassLoader) ClassLoader.getSystemClassLoader();
-
-            jarClassLoader.findJars();
+            initJarClassLoader();
+            initServiceHolder();
 
             System.out.println();
 
         } catch(Throwable e) {
             e.printStackTrace();
         }
+    }
+
+    private static void initJarClassLoader() {
+        JarClassLoader jarClassLoader = (JarClassLoader) ClassLoader.getSystemClassLoader();
+        jarClassLoader.findJars();
+    }
+
+    private static void initServiceHolder() {
+        ServiceHolder.init();
     }
 }

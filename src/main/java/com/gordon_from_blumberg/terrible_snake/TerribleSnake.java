@@ -50,8 +50,8 @@ public class TerribleSnake implements Game, Configuration {
     private boolean running = false;
 
     public TerribleSnake() {
-        settingsService = ServiceHolder.getSettingsService();
-        dictionaryService = ServiceHolder.getDictionaryService();
+        settingsService = ServiceHolder.getService(SettingsService.class);
+        dictionaryService = ServiceHolder.getService(DictionaryService.class);
 
         rootEntityFactory = new TerribleSnakeRootEntityFactory();
     }

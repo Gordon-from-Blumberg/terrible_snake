@@ -10,6 +10,7 @@ package com.gordon_from_blumberg.service.impl;
  */
 
 import com.gordon_from_blumberg.service.DictionaryService;
+import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.utils.ProperiesUtils;
 import com.gordon_from_blumberg.utils.StringUtils;
@@ -33,7 +34,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     public DictionaryServiceImpl() {
         currentLanguage = DEFAULT_LANGUAGE;
-        dictionaryPath = ServiceHolder.getPathService()
+        dictionaryPath = ServiceHolder.getService(PathService.class)
                 .getResourceDir(DICTIONARY_DIR);
         dictionaryProperties = readDictionaryProperties();
     }

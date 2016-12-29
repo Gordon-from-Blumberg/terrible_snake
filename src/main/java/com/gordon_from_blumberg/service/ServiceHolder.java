@@ -41,7 +41,7 @@ public final class ServiceHolder {
         Object service = serviceMap.get(serviceType);
 
         if (service == null) {
-            throw new NullPointerException(String.format("Service does not exist for class %s", serviceType.getName()));
+            throw new NullPointerException(String.format("Service does not exist for type %s", serviceType.getName()));
         }
 
         return (S) service;

@@ -12,6 +12,8 @@ package com.gordon_from_blumberg.service.impl;
 import com.gordon_from_blumberg.service.GroovyService;
 import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.ServiceHolder;
+import com.gordon_from_blumberg.service.annotation.Inject;
+import com.gordon_from_blumberg.service.annotation.Injectable;
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
 
@@ -22,8 +24,12 @@ import java.util.Map;
 /**
  * Base implementation of the GroovyService
  */
+@Injectable("groovyService")
 public class GroovyServiceImpl implements GroovyService {
     private static final String GROOVY_DIR = "groovy/";
+
+    @Inject
+    private PathService pathService;
 
     private final Path groovyPath;
 

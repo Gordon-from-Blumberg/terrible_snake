@@ -11,6 +11,7 @@ package com.gordon_from_blumberg.service.impl;
 
 import com.gordon_from_blumberg.jar_loader.JarClassLoader;
 import com.gordon_from_blumberg.service.PathService;
+import com.gordon_from_blumberg.service.annotation.Injectable;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import java.nio.file.Path;
@@ -19,6 +20,7 @@ import java.nio.file.Paths;
 /**
  * Base implementation of the PathService
  */
+@Injectable("pathService")
 public class PathServiceImpl implements PathService {
     private Path runningDir;
 

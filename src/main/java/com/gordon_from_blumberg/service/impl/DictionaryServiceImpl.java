@@ -12,6 +12,8 @@ package com.gordon_from_blumberg.service.impl;
 import com.gordon_from_blumberg.service.DictionaryService;
 import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.ServiceHolder;
+import com.gordon_from_blumberg.service.annotation.Inject;
+import com.gordon_from_blumberg.service.annotation.Injectable;
 import com.gordon_from_blumberg.utils.ProperiesUtils;
 import com.gordon_from_blumberg.utils.StringUtils;
 
@@ -22,10 +24,14 @@ import java.util.Properties;
 /**
  * Base implementation of the DictionaryService
  */
+@Injectable("dictionaryService")
 public class DictionaryServiceImpl implements DictionaryService {
     private static final String DEFAULT_LANGUAGE = "en";
     private static final String DICTIONARY_DIR = "dictionary/";
     private static final String DICTIONARY_PROPERTIES = "dictionary.properties";
+
+    @Inject
+    private PathService pathService;
 
     private final Path dictionaryPath;
 

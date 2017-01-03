@@ -14,7 +14,7 @@ import com.gordon_from_blumberg.service.PathService;
 import com.gordon_from_blumberg.service.ServiceHolder;
 import com.gordon_from_blumberg.service.annotation.Inject;
 import com.gordon_from_blumberg.service.annotation.Injectable;
-import com.gordon_from_blumberg.utils.ProperiesUtils;
+import com.gordon_from_blumberg.utils.PropertiesUtils;
 import com.gordon_from_blumberg.utils.StringUtils;
 
 import java.io.File;
@@ -80,6 +80,6 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     private Properties readDictionaryProperties() {
-        return ProperiesUtils.readProperties(getDictionaryFile());
+        return PropertiesUtils.readProperties(getDictionaryFile());
     }
 }

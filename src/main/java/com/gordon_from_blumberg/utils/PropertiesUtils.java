@@ -18,7 +18,7 @@ import java.util.Properties;
 /**
  * Util class for work with properties files
  */
-public class ProperiesUtils {
+public class PropertiesUtils {
     private static final String PROPERTIES_ENCODING = "ISO8859-1";
 
     /**

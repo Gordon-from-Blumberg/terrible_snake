@@ -8,18 +8,11 @@
 
     <property name="src.dir" value="src"/>
     <property name="src.resources.dir" value="${src.dir}/main/resources"/>
-    <property name="exclude.files" value="**/example.java"/>
 
     <property name="output.dir" value="classes"/>
 
     <property name="build.lib.dir" value="${build.dir}/lib"/>
     <property name="build.resources.dir" value="${build.dir}/resources"/>
-
-    <fileset id="lib.fileset" dir="${lib.dir}">
-        <include name="*.jar"/>
-        <exclude name="*-javadoc.jar"/>
-        <exclude name="*-sources.jar"/>
-    </fileset>
 
     <fileset id="settings.fileset" dir="${src.resources.dir}/settings">
         <include name="*.json"/>
@@ -33,30 +26,22 @@
         <include name="*.groovy"/>
     </fileset>
 
+    <dirset id="modules.dirset" dir="modules"/>
+
     <fileset id="resources.fileset" dir="${src.resources.dir}">
         <include name="settings/*.json"/>
         <include name="dictionary/*dictionary.properties"/>
         <!--<include name="groovy/*.groovy"/>-->
     </fileset>
 
-    <path id="lib.classpath">
-        <fileset refid="lib.fileset"/>
-    </path>
-
-    <target name="build" depends="compile, copy-resources, build-lib">
+    <target name="build" depends="compile, copy-resources">
+        <antcall target="clear-dir" inheritall="false">
+            <param name="target-dir" value="${build.dir}"/>
+        </antcall>
         <jar basedir="${output.dir}"
              destfile="${build.dir}/${ant.project.name}.jar"
              manifest="${manifest.file}"
              includes="**">
-            <!--<include name="**"/>-->
-        </jar>
-    </target>
-
-    <target name="build-lib">
-        <jar destfile="${build.lib.dir}/lib.jar"
-             manifest="${lib.dir}/${manifest.file}">
-
-            <zipgroupfileset refid="lib.fileset"/>
         </jar>
     </target>
 
@@ -70,10 +55,7 @@
                encoding="${javac.encoding}"
                debug="${compile.debug}"
                source="1.8"
-               target="1.8">
-
-            <exclude name="${exclude.files}"/>
-        </javac>
+               target="1.8"/>
     </target>
 
     <target name="copy-resources">
@@ -86,10 +68,36 @@
         </copy>
     </target>
 
+    <target name="build-modules">
+        <antcall target="call-ant-file" inheritall="true">
+            <param name="target-name" value="build"/>
+            <!--<param name="target-root-dir" value="modules/lib"/>-->
+            <param name="basedir" value="modules/lib"/>
+        </antcall>
+
+        <!--<antcall target="call-ant-file" inheritall="true">-->
+        <!--<param name="target-name" value="build"/>-->
+        <!--<param name="target-root-dir" value="modules/game"/>-->
+        <!--</antcall>-->
+
+        <!--<antcall target="call-ant-file" inheritall="true">-->
+        <!--<param name="target-name" value="build"/>-->
+        <!--<param name="target-root-dir" value="modules/terrible_snake"/>-->
+        <!--</antcall>-->
+    </target>
+
     <target name="clear-dir">
         <mkdir dir="${target-dir}"/>
         <delete includeemptydirs="true">
             <fileset dir="${target-dir}" includes="**/*"/>
         </delete>
+    </target>
+
+    <target name="call-ant-file">
+        <echo message="***** ${target-name}: ${basedir} *****"/>
+        <ant
+                antfile="build.xml"
+                target="${target-name}"
+                inheritAll="true"/>
     </target>
 </project>

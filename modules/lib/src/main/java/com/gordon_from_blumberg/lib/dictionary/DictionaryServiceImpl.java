@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.lib.service.impl;
+package com.gordon_from_blumberg.lib.dictionary;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,11 +9,6 @@ package com.gordon_from_blumberg.lib.service.impl;
  * Created: 22:43 020 20.06.16
  */
 
-import com.gordon_from_blumberg.lib.service.DictionaryService;
-import com.gordon_from_blumberg.lib.service.PathService;
-import com.gordon_from_blumberg.lib.service.ServiceHolder;
-import com.gordon_from_blumberg.lib.service.annotation.Inject;
-import com.gordon_from_blumberg.lib.service.annotation.Injectable;
 import com.gordon_from_blumberg.lib.utils.PropertiesUtils;
 import com.gordon_from_blumberg.lib.utils.StringUtils;
 
@@ -24,24 +19,19 @@ import java.util.Properties;
 /**
  * Base implementation of the DictionaryService
  */
-@Injectable("dictionaryService")
 public class DictionaryServiceImpl implements DictionaryService {
     private static final String DEFAULT_LANGUAGE = "en";
     private static final String DICTIONARY_DIR = "dictionary/";
     private static final String DICTIONARY_PROPERTIES = "dictionary.properties";
 
-    @Inject
-    private PathService pathService;
-
-    private final Path dictionaryPath;
+    private Path dictionaryPath;
 
     private String currentLanguage;
     private Properties dictionaryProperties;
 
     public DictionaryServiceImpl() {
         currentLanguage = DEFAULT_LANGUAGE;
-        dictionaryPath = ServiceHolder.getService(PathService.class)
-                .getResourceDir(DICTIONARY_DIR);
+
         dictionaryProperties = readDictionaryProperties();
     }
 

@@ -28,6 +28,10 @@
 
     <dirset id="modules.dirset" dir="modules"/>
 
+    <path id="modules.classpath">
+        <dirset refid="modules.dirset"/>
+    </path>
+
     <fileset id="resources.fileset" dir="${src.resources.dir}">
         <include name="settings/*.json"/>
         <include name="dictionary/*dictionary.properties"/>
@@ -51,7 +55,7 @@
         </antcall>
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
-               classpathref="lib.classpath"
+               classpathref="modules.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
                source="1.8"
@@ -68,6 +72,7 @@
         </copy>
     </target>
 
+    <!-- todo don't use basedir -->
     <target name="build-modules">
         <antcall target="call-ant-file" inheritall="true">
             <param name="target-name" value="build"/>

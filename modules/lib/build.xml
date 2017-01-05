@@ -4,10 +4,15 @@
 
     <property name="external.libs.dir" value="lib"/>
 
+    <property name="exclude.files" value="**/groovy/*"/>
+    <!-- groovy now is not being used -->
+
     <fileset id="external.libs.fileset" dir="${external.libs.dir}">
         <include name="*.jar"/>
         <exclude name="*-javadoc.jar"/>
         <exclude name="*-sources.jar"/>
+        <exclude name="groovy-*.jar"/>
+        <!-- groovy now is not being used -->
     </fileset>
 
     <path id="lib.classpath">
@@ -29,7 +34,6 @@
     </target>
 
     <target name="compile">
-        <echo message="src.dir = ${src.dir}"/>
         <echo message="basedir = ${basedir}"/>
         <antcall target="clear-dir" inheritall="false">
             <param name="target-dir" value="${output.dir}"/>

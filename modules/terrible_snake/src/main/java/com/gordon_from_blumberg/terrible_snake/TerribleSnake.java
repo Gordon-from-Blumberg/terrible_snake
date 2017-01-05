@@ -13,9 +13,8 @@ import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
 import com.gordon_from_blumberg.game.settings.GraphicSettings;
-import com.gordon_from_blumberg.lib.service.DictionaryService;
-import com.gordon_from_blumberg.lib.service.ServiceHolder;
-import com.gordon_from_blumberg.lib.service.SettingsService;
+import com.gordon_from_blumberg.lib.dictionary.DictionaryService;
+import com.gordon_from_blumberg.lib.settings.SettingsComponent;
 import com.gordon_from_blumberg.lib.utils.StringUtils;
 import com.gordon_from_blumberg.terrible_snake.entity.impl.TerribleSnakeRootEntityFactory;
 import com.gordon_from_blumberg.terrible_snake.entity.menu.MainMenu;
@@ -37,7 +36,7 @@ public class TerribleSnake implements Game, Configuration {
 
     private static final String DEFAULT_STATE = MainMenu.STATE_KEY;
 
-    private SettingsService settingsService;
+    private SettingsComponent settingsService;
     private DictionaryService dictionaryService;
 
     private GameRootEntityFactory rootEntityFactory;
@@ -50,7 +49,7 @@ public class TerribleSnake implements Game, Configuration {
     private boolean running = false;
 
     public TerribleSnake() {
-        settingsService = ServiceHolder.getService(SettingsService.class);
+        settingsService = ServiceHolder.getService(SettingsComponent.class);
         dictionaryService = ServiceHolder.getService(DictionaryService.class);
 
         rootEntityFactory = new TerribleSnakeRootEntityFactory();

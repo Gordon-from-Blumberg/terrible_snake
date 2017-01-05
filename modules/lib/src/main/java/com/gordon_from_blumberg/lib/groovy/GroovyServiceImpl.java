@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.lib.service.impl;
+package com.gordon_from_blumberg.lib.groovy;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -9,11 +9,6 @@ package com.gordon_from_blumberg.lib.service.impl;
  * Created: 22:03 002 02.07.16
  */
 
-import com.gordon_from_blumberg.lib.service.GroovyService;
-import com.gordon_from_blumberg.lib.service.PathService;
-import com.gordon_from_blumberg.lib.service.ServiceHolder;
-import com.gordon_from_blumberg.lib.service.annotation.Inject;
-import com.gordon_from_blumberg.lib.service.annotation.Injectable;
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
 
@@ -24,19 +19,15 @@ import java.util.Map;
 /**
  * Base implementation of the GroovyService
  */
-@Injectable("groovyService")
 public class GroovyServiceImpl implements GroovyService {
     private static final String GROOVY_DIR = "groovy/";
 
-    @Inject
-    private PathService pathService;
-
-    private final Path groovyPath;
+    private Path groovyPath;
 
     private GroovyScriptEngine engine;
 
     public GroovyServiceImpl() {
-        groovyPath = ServiceHolder.getService(PathService.class).getResourceDir(GROOVY_DIR);
+        //groovyPath = ServiceHolder.getService(PathService.class).getResourceDir(GROOVY_DIR);
         try {
             engine = new GroovyScriptEngine(new String[] {groovyPath.toString()});
         } catch(IOException e) {

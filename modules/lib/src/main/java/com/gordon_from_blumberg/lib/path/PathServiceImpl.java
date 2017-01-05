@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.lib.service.impl;
+package com.gordon_from_blumberg.lib.path;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg
@@ -10,8 +10,6 @@ package com.gordon_from_blumberg.lib.service.impl;
  */
 
 import com.gordon_from_blumberg.lib.jar_loader.JarClassLoader;
-import com.gordon_from_blumberg.lib.service.PathService;
-import com.gordon_from_blumberg.lib.service.annotation.Injectable;
 import com.gordon_from_blumberg.lib.utils.StringUtils;
 
 import java.nio.file.Path;
@@ -20,7 +18,6 @@ import java.nio.file.Paths;
 /**
  * Base implementation of the PathService
  */
-@Injectable("pathService")
 public class PathServiceImpl implements PathService {
     private Path runningDir;
 

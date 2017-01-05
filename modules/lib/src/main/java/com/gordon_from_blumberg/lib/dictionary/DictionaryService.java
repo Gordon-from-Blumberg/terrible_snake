@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.lib.service;
+package com.gordon_from_blumberg.lib.dictionary;
 
 /**
  * Copyright (c) 2016 Gordon from Blumberg

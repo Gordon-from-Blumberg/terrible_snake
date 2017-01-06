@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="terrible_snake" default="build" basedir=".">
+    <property name="module.dir" value="${basedir}"/>
+
     <property file="build.properties"/>
-
-    <property name="manifest.file" value="manifest.txt"/>
-
-    <property name="lib.dir" value="lib"/>
-
-    <property name="src.dir" value="src"/>
-    <property name="src.resources.dir" value="${src.dir}/main/resources"/>
-
-    <property name="output.dir" value="classes"/>
 
     <property name="build.lib.dir" value="${build.dir}/lib"/>
     <property name="build.resources.dir" value="${build.dir}/resources"/>
@@ -26,10 +19,12 @@
         <include name="*.groovy"/>
     </fileset>
 
-    <dirset id="modules.dirset" dir="modules"/>
+    <dirset id="dependencies.dirset" dir="modules">
+        <include name="lib"/>
+    </dirset>
 
-    <path id="modules.classpath">
-        <dirset refid="modules.dirset"/>
+    <path id="dependencies.classpath">
+        <dirset refid="dependencies.dirset"/>
     </path>
 
     <fileset id="resources.fileset" dir="${src.resources.dir}">
@@ -38,9 +33,9 @@
         <!--<include name="groovy/*.groovy"/>-->
     </fileset>
 
-    <target name="build" depends="compile, copy-resources">
+    <target name="build" depends="build-all-modules, compile, copy-resources">
         <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${build.dir}"/>
+            <param name="target.dir" value="${build.dir}"/>
         </antcall>
         <jar basedir="${output.dir}"
              destfile="${build.dir}/${ant.project.name}.jar"
@@ -50,12 +45,13 @@
     </target>
 
     <target name="compile">
+        <echo message="src.resources.dir = ${src.resources.dir}"/>
         <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${output.dir}"/>
+            <param name="target.dir" value="${output.dir}"/>
         </antcall>
-        <javac srcdir="${src.dir}"
+        <javac srcdir="${src.java.dir}"
                destdir="${output.dir}"
-               classpathref="modules.classpath"
+               classpathref="dependencies.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
                source="1.8"
@@ -64,7 +60,7 @@
 
     <target name="copy-resources">
         <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${build.resources.dir}"/>
+            <param name="target.dir" value="${build.resources.dir}"/>
         </antcall>
 
         <copy todir="${build.resources.dir}">
@@ -72,37 +68,49 @@
         </copy>
     </target>
 
-    <!-- todo don't use basedir -->
-    <target name="build-modules">
-        <antcall target="call-ant-file" inheritall="true">
-            <param name="target-name" value="build"/>
-            <!--<param name="target-root-dir" value="modules/lib"/>-->
-            <param name="basedir" value="modules/lib"/>
+    <target name="build-all-modules">
+        <antcall target="build-module" inheritall="false">
+            <param name="module.name" value="lib"/>
         </antcall>
 
         <!--<antcall target="call-ant-file" inheritall="true">-->
-        <!--<param name="target-name" value="build"/>-->
-        <!--<param name="target-root-dir" value="modules/game"/>-->
+        <!--<param name="target.name" value="build"/>-->
+        <!--<param name="target.root.dir" value="modules/game"/>-->
         <!--</antcall>-->
 
         <!--<antcall target="call-ant-file" inheritall="true">-->
-        <!--<param name="target-name" value="build"/>-->
-        <!--<param name="target-root-dir" value="modules/terrible_snake"/>-->
+        <!--<param name="target.name" value="build"/>-->
+        <!--<param name="target.root.dir" value="modules/terrible_snake"/>-->
         <!--</antcall>-->
     </target>
 
+    <target name="build-module">
+        <echo message="*** build module ${module.name} ***"/>
+
+        <antcall target="call-ant-file" inheritall="false">
+            <param name="target.name" value="build"/>
+            <param name="target.root.dir" value="modules/${module.name}"/>
+        </antcall>
+
+        <property file="modules/${module.name}/build.properties"/>
+        <copy todir="${build.dir}/${dest.build.dir}">
+            <fileset dir="modules/${module.name}/build"/>
+        </copy>
+    </target>
+
     <target name="clear-dir">
-        <mkdir dir="${target-dir}"/>
+        <mkdir dir="${target.dir}"/>
+        <echo message="*** clear dir ${target.dir}"/>
         <delete includeemptydirs="true">
-            <fileset dir="${target-dir}" includes="**/*"/>
+            <fileset dir="${target.dir}" includes="**/*"/>
         </delete>
     </target>
 
     <target name="call-ant-file">
-        <echo message="***** ${target-name}: ${basedir} *****"/>
+        <echo message="*** run task ${target.name} from ${target.root.dir} ***"/>
         <ant
-                antfile="build.xml"
-                target="${target-name}"
-                inheritAll="true"/>
+                antfile="${target.root.dir}/build.xml"
+                target="${target.name}"
+                inheritAll="false"/>
     </target>
 </project>

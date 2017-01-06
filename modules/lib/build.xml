@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="lib" default="build" basedir=".">
-    <property file="build.properties"/>
+<project name="lib" default="build" basedir="../../">
+    <property name="module.dir" value="modules/lib"/>
 
-    <property name="external.libs.dir" value="lib"/>
+    <property file="build.properties"/>
+    <property file="${module.dir}/build.properties"/>
+
+    <property name="external.libs.dir" value="${module.dir}/lib"/>
 
     <property name="exclude.files" value="**/groovy/*"/>
     <!-- groovy now is not being used -->
@@ -34,7 +37,6 @@
     </target>
 
     <target name="compile">
-        <echo message="basedir = ${basedir}"/>
         <antcall target="clear-dir" inheritall="false">
             <param name="target-dir" value="${output.dir}"/>
         </antcall>
@@ -62,6 +64,7 @@
 
     <target name="clear-dir">
         <mkdir dir="${target-dir}"/>
+        <echo message="*** clear dir ${target-dir}"/>
         <delete includeemptydirs="true">
             <fileset dir="${target-dir}" includes="**/*"/>
         </delete>

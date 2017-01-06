@@ -10,9 +10,7 @@ package com.gordon_from_blumberg;
  */
 
 import com.gordon_from_blumberg.game.Game;
-import com.gordon_from_blumberg.jar_loader.JarClassLoader;
-import com.gordon_from_blumberg.service.ServiceHolder;
-import com.gordon_from_blumberg.terrible_snake.TerribleSnake;
+import com.gordon_from_blumberg.lib.jar_loader.JarClassLoader;
 
 public final class Main {
 
@@ -21,48 +19,22 @@ public final class Main {
 
         init();
 
-        Game game = new TerribleSnake();
-
-        final int SKIP_TICKS = 1000 / game.getTicksPerSecond();
-        final int MAX_FRAME_SKIP = game.getMaxFrameSkip();
-
-        long nextGameTick = System.currentTimeMillis();
-        long prevGameTick = nextGameTick - SKIP_TICKS;
+        Game game = new Game();
 
         try {
-            game.init();
 
-            while(game.isRunning()) {
-                int skippedFrames = 0;
+            game.run();
 
-                while(System.currentTimeMillis() > nextGameTick && skippedFrames < MAX_FRAME_SKIP) {
-                    game.updateGame();
-
-                    prevGameTick = nextGameTick;
-                    nextGameTick += SKIP_TICKS;
-                    skippedFrames++;
-                }
-
-                game.renderGame(interpolate(prevGameTick, SKIP_TICKS));
-            }
         } catch(Throwable e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    private static float interpolate(long prevGameTick, int skipTicks) {
-        float currentTick = (float) (System.currentTimeMillis() - prevGameTick);
-        return currentTick / skipTicks;
-    }
-
     private static void init() {
         try {
 
             initJarClassLoader();
-            initServiceHolder();
-
-            System.out.println();
 
         } catch(Throwable e) {
             e.printStackTrace();
@@ -72,9 +44,5 @@ public final class Main {
     private static void initJarClassLoader() {
         JarClassLoader jarClassLoader = (JarClassLoader) ClassLoader.getSystemClassLoader();
         jarClassLoader.findJars();
-    }
-
-    private static void initServiceHolder() {
-        ServiceHolder.init();
     }
 }

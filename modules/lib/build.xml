@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="lib" default="build" basedir="../../">
-    <property name="module.dir" value="modules/lib"/>
+    <property name="module.dir" value="modules/${ant.project.name}"/>
 
     <property file="build.properties"/>
     <property file="${module.dir}/build.properties"/>
@@ -23,9 +23,9 @@
     </path>
 
     <target name="build" depends="compile">
-        <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${build.dir}"/>
-        </antcall>
+        <ant antfile="build.xml" target="clear-dir" inheritall="false">
+            <property name="target-dir" value="${build.dir}"/>
+        </ant>
 
         <jar basedir="${output.dir}"
              destfile="${build.dir}/${ant.project.name}.jar"
@@ -37,9 +37,9 @@
     </target>
 
     <target name="compile">
-        <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${output.dir}"/>
-        </antcall>
+        <ant antfile="build.xml" target="clear-dir" inheritall="false">
+            <property name="target-dir" value="${output.dir}"/>
+        </ant>
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
                classpathref="lib.classpath"
@@ -61,12 +61,4 @@
     <!--<resources refid="resources.fileset"/>-->
     <!--</copy>-->
     <!--</target>-->
-
-    <target name="clear-dir">
-        <mkdir dir="${target-dir}"/>
-        <echo message="*** clear dir ${target-dir}"/>
-        <delete includeemptydirs="true">
-            <fileset dir="${target-dir}" includes="**/*"/>
-        </delete>
-    </target>
 </project>

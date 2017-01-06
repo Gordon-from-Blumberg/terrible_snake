@@ -10,38 +10,64 @@ package com.gordon_from_blumberg.game;
  */
 
 /**
- * Defines the main object of the game
+ * Entry point object of the game
  */
-public interface Game {
-    /**
-     * Initializes the game
-     */
-    void init();
+public class Game {
+    private final int SKIP_TICKS;
+    private final int MAX_FRAME_SKIP;
 
-    /**
-     * @return True if the game is running, and false otherwise
-     */
-    boolean isRunning();
+    private boolean running = false;
+
+    //todo
+    public Game() {
+        SKIP_TICKS = 10;
+        MAX_FRAME_SKIP = 10;
+    }
+
+    public void run() {
+        running = true;
+
+        long nextGameTick = System.currentTimeMillis();
+        long prevGameTick = nextGameTick - SKIP_TICKS;
+
+        try {
+            while(running) {
+                int skippedFrames = 0;
+
+                while(System.currentTimeMillis() > nextGameTick && skippedFrames < MAX_FRAME_SKIP) {
+                    update();
+
+                    prevGameTick = nextGameTick;
+                    nextGameTick += SKIP_TICKS;
+                    skippedFrames++;
+                }
+
+                render(interpolate(prevGameTick, SKIP_TICKS));
+            }
+        } catch(Throwable e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
 
     /**
      * Calculates the game logic and updates the game state
      */
-    void updateGame();
+    private void update() {
+        running = false;
+    }
 
     /**
      * Renders the game on the display
      *
      * @param interpolation Used for smoothly animation when the FPS greater than the game speed
      */
-    void renderGame(float interpolation);
+    private void render(float interpolation) {
 
-    /**
-     * @return The count of <code>updateGame</code> calls per second
-     */
-    int getTicksPerSecond();
+    }
 
-    /**
-     * @return The max count of skipped frames
-     */
-    int getMaxFrameSkip();
+    private float interpolate(long prevGameTick, int skipTicks) {
+        float currentTick = (float) (System.currentTimeMillis() - prevGameTick);
+        return currentTick / skipTicks;
+    }
 }

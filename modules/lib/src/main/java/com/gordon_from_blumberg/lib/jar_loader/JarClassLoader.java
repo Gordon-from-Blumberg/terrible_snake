@@ -24,6 +24,7 @@ public class JarClassLoader extends URLClassLoader {
 
     private static String runningDir;
 
+    //todo don't use static block
     static {
         findRunningDir();
     }

@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Bundle-Name: game-lib
+Bundle-Description: base library of game interfaces

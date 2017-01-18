@@ -26,8 +26,8 @@
                destdir="${output.dir}"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
-               source="1.8"
-               target="1.8">
+               source="${java.v}"
+               target="${java.v}">
 
         </javac>
     </target>

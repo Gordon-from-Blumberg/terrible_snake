@@ -38,15 +38,16 @@
 
     <target name="compile">
         <ant antfile="build.xml" target="clear-dir" inheritall="false">
-            <property name="target-dir" value="${output.dir}"/>
+            <property name="target.dir" value="${output.dir}"/>
         </ant>
+
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
                classpathref="lib.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
-               source="1.8"
-               target="1.8">
+               source="${java.v}"
+               target="${java.v}">
 
             <exclude name="${exclude.files}"/>
         </javac>

@@ -54,8 +54,8 @@
                classpathref="dependencies.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
-               source="1.8"
-               target="1.8"/>
+               source="${java.v}"
+               target="${java.v}"/>
     </target>
 
     <target name="copy-resources">
@@ -74,7 +74,11 @@
         </antcall>
 
         <antcall target="build-module" inheritall="false">
-            <param name="module.name" value="game"/>
+            <param name="module.name" value="game-lib"/>
+        </antcall>
+
+        <antcall target="build-module" inheritall="false">
+            <param name="module.name" value="terrible_snake"/>
         </antcall>
     </target>
 

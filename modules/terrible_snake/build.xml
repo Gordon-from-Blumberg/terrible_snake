@@ -1,49 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="terrible_snake" default="build" basedir=".">
+<project name="terrible_snake" default="build" basedir="../../">
+    <property name="module.dir" value="modules/${ant.project.name}"/>
+
     <property file="build.properties"/>
+    <property file="${module.dir}/build.properties"/>
 
-    <property name="manifest.file" value="manifest.txt"/>
+    <target name="build" depends="compile">
+        <ant antfile="build.xml" target="clear-dir" inheritall="false">
+            <property name="target.dir" value="${build.dir}"/>
+        </ant>
 
-    <property name="lib.dir" value="lib"/>
-
-    <property name="src.dir" value="src"/>
-    <property name="src.resources.dir" value="${src.dir}/main/resources"/>
-    <property name="exclude.files" value="**/example.java"/>
-
-    <property name="output.dir" value="classes"/>
-
-    <property name="build.lib.dir" value="${build.dir}/lib"/>
-    <property name="build.resources.dir" value="${build.dir}/resources"/>
-
-    <fileset id="lib.fileset" dir="${lib.dir}">
-        <include name="*.jar"/>
-        <exclude name="*-javadoc.jar"/>
-        <exclude name="*-sources.jar"/>
-    </fileset>
-
-    <fileset id="settings.fileset" dir="${src.resources.dir}/settings">
-        <include name="*.json"/>
-    </fileset>
-
-    <fileset id="dictionary.fileset" dir="${src.resources.dir}/dictionary">
-        <include name="*dictionary.properties"/>
-    </fileset>
-
-    <fileset id="groovy.fileset" dir="${src.resources.dir}/groovy">
-        <include name="*.groovy"/>
-    </fileset>
-
-    <fileset id="resources.fileset" dir="${src.resources.dir}">
-        <include name="settings/*.json"/>
-        <include name="dictionary/*dictionary.properties"/>
-        <!--<include name="groovy/*.groovy"/>-->
-    </fileset>
-
-    <path id="lib.classpath">
-        <fileset refid="lib.fileset"/>
-    </path>
-
-    <target name="build" depends="compile, copy-resources, build-lib">
         <jar basedir="${output.dir}"
              destfile="${build.dir}/${ant.project.name}.jar"
              manifest="${manifest.file}"
@@ -52,27 +18,17 @@
         </jar>
     </target>
 
-    <target name="build-lib">
-        <jar destfile="${build.lib.dir}/lib.jar"
-             manifest="${lib.dir}/${manifest.file}">
-
-            <zipgroupfileset refid="lib.fileset"/>
-        </jar>
-    </target>
-
     <target name="compile">
-        <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${output.dir}"/>
-        </antcall>
+        <ant antfile="build.xml" target="clear-dir" inheritall="false">
+            <property name="target.dir" value="${output.dir}"/>
+        </ant>
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
-               classpathref="lib.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
-               source="1.8"
-               target="1.8">
+               source="${java.v}"
+               target="${java.v}">
 
-            <exclude name="${exclude.files}"/>
         </javac>
     </target>
 
@@ -84,12 +40,5 @@
         <copy todir="${build.resources.dir}">
             <resources refid="resources.fileset"/>
         </copy>
-    </target>
-
-    <target name="clear-dir">
-        <mkdir dir="${target-dir}"/>
-        <delete includeemptydirs="true">
-            <fileset dir="${target-dir}" includes="**/*"/>
-        </delete>
     </target>
 </project>

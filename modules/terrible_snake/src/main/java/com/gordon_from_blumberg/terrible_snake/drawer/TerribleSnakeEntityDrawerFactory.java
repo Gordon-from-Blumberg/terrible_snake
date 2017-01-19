@@ -10,7 +10,7 @@ package com.gordon_from_blumberg.terrible_snake.drawer;
  */
 
 import com.gordon_from_blumberg.game.drawer.EntityDrawer;
-import com.gordon_from_blumberg.utils.ReflectionUtils;
+import com.gordon_from_blumberg.lib.utils.ReflectionUtils;
 
 import java.util.HashMap;
 import java.util.Map;

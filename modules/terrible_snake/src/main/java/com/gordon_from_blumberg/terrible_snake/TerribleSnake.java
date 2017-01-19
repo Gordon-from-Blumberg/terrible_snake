@@ -32,7 +32,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
-public class TerribleSnake implements Game, Configuration {
+//todo
+public class TerribleSnake extends Game {
 
     private static final String DEFAULT_STATE = MainMenu.STATE_KEY;
 
@@ -49,15 +50,12 @@ public class TerribleSnake implements Game, Configuration {
     private boolean running = false;
 
     public TerribleSnake() {
-        settingsService = ServiceHolder.getService(SettingsComponent.class);
-        dictionaryService = ServiceHolder.getService(DictionaryService.class);
 
         rootEntityFactory = new TerribleSnakeRootEntityFactory();
     }
 
-    @Override
     public void init() {
-        frame = createFrame(settingsService.getSettings().getGraphicSettings());
+//        frame = createFrame(settingsService.getSettings().getGraphicSettings());
 
         updateState(DEFAULT_STATE);
 
@@ -96,12 +94,10 @@ public class TerribleSnake implements Game, Configuration {
         running = true;
     }
 
-    @Override
     public boolean isRunning() {
         return running;
     }
 
-    @Override
     public void updateGame() {
         String newState = rootEntity.updateRoot();
 
@@ -114,19 +110,16 @@ public class TerribleSnake implements Game, Configuration {
         }
     }
 
-    @Override
     public void renderGame(float interpolation) {
         rootEntity.render(interpolation);
     }
 
-    @Override
     public int getTicksPerSecond() {
-        return TICKS_PER_SECOND;
+        return 0;
     }
 
-    @Override
     public int getMaxFrameSkip() {
-        return MAX_FRAME_SKIP;
+        return 0;
     }
 
     private void updateState(String newState) {

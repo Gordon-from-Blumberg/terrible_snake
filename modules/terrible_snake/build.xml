@@ -5,6 +5,13 @@
     <property file="build.properties"/>
     <property file="${module.dir}/build.properties"/>
 
+    <path id="dependencies.classpath">
+        <fileset dir="build">
+            <include name="*.jar"/>
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
     <target name="build" depends="compile">
         <ant antfile="build.xml" target="clear-dir" inheritall="false">
             <property name="target.dir" value="${build.dir}"/>
@@ -19,11 +26,13 @@
     </target>
 
     <target name="compile">
-        <ant antfile="build.xml" target="clear-dir" inheritall="false">
-            <property name="target.dir" value="${output.dir}"/>
-        </ant>
+        <!--<ant antfile="build.xml" target="clear-dir" inheritall="false">-->
+        <!--<property name="target.dir" value="${output.dir}"/>-->
+        <!--</ant>-->
+
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
+               classpathref="dependencies.classpath"
                encoding="${javac.encoding}"
                debug="${compile.debug}"
                source="${java.v}"

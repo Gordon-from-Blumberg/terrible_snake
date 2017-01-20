@@ -10,18 +10,18 @@ package com.gordon_from_blumberg;
  */
 
 import com.gordon_from_blumberg.game.Game;
-import com.gordon_from_blumberg.lib.jar_loader.JarClassLoader;
+import com.gordon_from_blumberg.jar_loader.JarLoader;
+
+import java.net.URLClassLoader;
 
 public final class Main {
 
     public static void main(String args[]) {
-        System.out.println("Property java.system.class.loader = " + System.getProperty("java.system.class.loader"));
-
-        init();
-
-        Game game = new Game();
-
         try {
+
+            init();
+
+            Game game = new Game();
 
             game.run();
 
@@ -34,15 +34,15 @@ public final class Main {
     private static void init() {
         try {
 
-            initJarClassLoader();
+            initJarLoader();
 
         } catch(Throwable e) {
             e.printStackTrace();
         }
     }
 
-    private static void initJarClassLoader() {
-        JarClassLoader jarClassLoader = (JarClassLoader) ClassLoader.getSystemClassLoader();
-        jarClassLoader.findJars();
+    private static void initJarLoader() {
+        URLClassLoader classLoader = (URLClassLoader) Main.class.getClassLoader();
+        JarLoader.addJarsToClassLoader(classLoader);
     }
 }

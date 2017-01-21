@@ -14,7 +14,7 @@
         <include name="*.jar"/>
         <exclude name="*-javadoc.jar"/>
         <exclude name="*-sources.jar"/>
-        <exclude name="groovy-*.jar"/>
+        <!--<exclude name="groovy-*.jar"/>-->
         <!-- groovy now is not being used -->
     </fileset>
 

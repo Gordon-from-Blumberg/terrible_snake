@@ -16,8 +16,11 @@ import java.util.Arrays;
 /**
  * Util methods for Reflection API using
  */
-public class ReflectionUtils {
+public final class ReflectionUtils {
     public static final String DELIMITER = ".";
+
+    private ReflectionUtils() {
+    }
 
     /**
      * Creates the new instance of the specified class

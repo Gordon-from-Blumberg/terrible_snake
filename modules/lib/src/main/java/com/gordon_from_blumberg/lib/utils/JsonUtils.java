@@ -14,8 +14,11 @@ import com.google.gson.Gson;
 import java.io.*;
 
 
-public class JsonUtils {
+public final class JsonUtils {
     private static final Gson gson = new Gson();
+
+    private JsonUtils() {
+    }
 
     public static String toJson(Object object) {
         return gson.toJson(object);

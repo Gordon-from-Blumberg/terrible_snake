@@ -12,7 +12,11 @@ package com.gordon_from_blumberg.lib.utils;
 /**
  * Util methods for work with strings
  */
-public class StringUtils {
+public final class StringUtils {
+
+    private StringUtils() {
+    }
+
     /**
      * Returns true if the passed string is null or empty
      *
@@ -32,5 +36,17 @@ public class StringUtils {
      */
     public static String defaultString(String string, String defaultString) {
         return isBlank(string) ? defaultString : string;
+    }
+
+    /**
+     * Clips the passed string by the specified delimiter. Uses the only last occurrence of the delimiter
+     * For example, {@code clip("/opt/tomcat/logs/testsite", "/")} will return {@code "/opt/tomcat/logs"}
+     *
+     * @param str       Input string
+     * @param delimiter Delimiter
+     * @return Clipped by the delimiter string
+     */
+    public static String clip(String str, String delimiter) {
+        return str.substring(0, str.lastIndexOf(delimiter));
     }
 }

@@ -45,9 +45,9 @@
     </target>
 
     <target name="compile" depends="build-all-modules">
-        <!--<antcall target="clear-dir" inheritall="false">-->
-        <!--<param name="target.dir" value="${output.dir}"/>-->
-        <!--</antcall>-->
+        <antcall target="clear-dir" inheritall="false">
+            <param name="target.dir" value="${output.dir}"/>
+        </antcall>
 
         <javac srcdir="${src.java.dir}"
                destdir="${output.dir}"

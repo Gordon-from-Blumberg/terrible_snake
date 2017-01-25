@@ -19,9 +19,9 @@
     </target>
 
     <target name="compile">
-        <!--<ant antfile="build.xml" target="clear-dir" inheritall="false">-->
-        <!--<property name="target.dir" value="${output.dir}"/>-->
-        <!--</ant>-->
+        <ant antfile="build.xml" target="clear-dir" inheritall="false">
+            <property name="target.dir" value="${output.dir}"/>
+        </ant>
         <javac srcdir="${src.dir}"
                destdir="${output.dir}"
                encoding="${javac.encoding}"

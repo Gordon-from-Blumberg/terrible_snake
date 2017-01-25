@@ -27,22 +27,18 @@ public final class JarLoader {
     private static final String JAR_EXTENSION = ".jar";
     private static final String URL_PATH_PREFIX = "file:/";
 
-    private static String runningDir;
+    private static final String RUNNING_DIR = "runningDir";
 
     private JarLoader() {
     }
 
-    public static String getRunningDir() {
-        return runningDir;
-    }
-
     public static void addJarsToClassLoader(URLClassLoader classLoader) {
-        findRunningDir();
+        setRunningDir();
 
         try {
             List<URL> urlList = new ArrayList<>();
 
-            addJarToList(new File(runningDir), urlList);
+            addJarToList(new File(System.getProperty(RUNNING_DIR)), urlList);
 
             System.out.println(String.format("Found %s jars", urlList.size()));
 
@@ -86,13 +82,15 @@ public final class JarLoader {
         }
     }
 
-    private static void findRunningDir() {
+    private static void setRunningDir() {
         String path = JarLoader.class.getResource("").getPath();
         path = path.startsWith(URL_PATH_PREFIX) ?
                 path.substring(URL_PATH_PREFIX.length()) :
                 path;
 
-        runningDir = clip(clip(path, JAR_PATH_DELIMITER), PATH_DELIMITER);
+        String runningDir = clip(clip(path, JAR_PATH_DELIMITER), PATH_DELIMITER);
+
+        System.setProperty(RUNNING_DIR, runningDir);
 
         System.out.println("Running dir = " + runningDir);
     }

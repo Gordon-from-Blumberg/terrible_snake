@@ -17,6 +17,10 @@ import java.nio.file.Path;
 public interface PathService {
     String RESOURCES_DIR = "resources/";
 
+    static String getRunningDir() {
+        return System.getProperty("runningDir");
+    }
+
     /**
      * Returns the Path object appropriate to the running directory
      *

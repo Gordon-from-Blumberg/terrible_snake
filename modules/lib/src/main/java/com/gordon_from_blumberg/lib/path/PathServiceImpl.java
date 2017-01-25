@@ -9,7 +9,6 @@ package com.gordon_from_blumberg.lib.path;
  * Created: 20:16 025 25.06.16
  */
 
-import com.gordon_from_blumberg.lib.jar_loader.JarClassLoader;
 import com.gordon_from_blumberg.lib.utils.StringUtils;
 
 import java.nio.file.Path;
@@ -51,7 +50,7 @@ public class PathServiceImpl implements PathService {
     }
 
     private static Path getRunningDir() {
-        String runningDirProperty = JarClassLoader.getRunningDir();
+        String runningDirProperty = System.getProperty("runningDir");
         return Paths.get(StringUtils.isBlank(runningDirProperty) ?
                 "" : runningDirProperty);
     }

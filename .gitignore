@@ -5,3 +5,4 @@ build/**
 patches/**
 *.iml
 *.ipr
+_*

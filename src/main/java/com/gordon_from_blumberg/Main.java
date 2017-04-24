@@ -15,11 +15,12 @@ import com.gordon_from_blumberg.jar_loader.JarLoader;
 import java.net.URLClassLoader;
 
 public final class Main {
+    private static final String SYS_PROPERTIES_DELIMITER = "=";
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
 
-            init();
+            init(args);
 
             Game game = new Game();
 
@@ -31,13 +32,25 @@ public final class Main {
         }
     }
 
-    private static void init() {
+    private static void init(String[] args) {
         try {
+
+            setSystemProperties(args);
 
             initJarLoader();
 
         } catch(Throwable e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void setSystemProperties(String[] args) {
+        for (String arg : args) {
+            if (arg.contains(SYS_PROPERTIES_DELIMITER)) {
+                String[] propertyAndValue = arg.split(SYS_PROPERTIES_DELIMITER);
+                System.out.println(String.format("Set system property %s = %s", propertyAndValue[0], propertyAndValue[1]));
+                System.setProperty(propertyAndValue[0], propertyAndValue[1]);
+            }
         }
     }
 

@@ -24,7 +24,7 @@
 
     <target name="build" depends="compile">
         <ant antfile="build.xml" target="clear-dir" inheritall="false">
-            <property name="target-dir" value="${build.dir}"/>
+            <property name="target.dir" value="${build.dir}"/>
         </ant>
 
         <jar basedir="${output.dir}"

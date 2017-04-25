@@ -43,7 +43,7 @@
 
     <target name="copy-resources">
         <antcall target="clear-dir" inheritall="false">
-            <param name="target-dir" value="${build.resources.dir}"/>
+            <param name="target.dir" value="${build.resources.dir}"/>
         </antcall>
 
         <copy todir="${build.resources.dir}">

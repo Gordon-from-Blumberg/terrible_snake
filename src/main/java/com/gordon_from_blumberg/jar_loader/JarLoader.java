@@ -37,8 +37,11 @@ public final class JarLoader {
 
         try {
             List<URL> urlList = new ArrayList<>();
+            File runningDir = new File(System.getProperty(RUNNING_DIR));
 
-            addJarToList(new File(System.getProperty(RUNNING_DIR)), urlList);
+            long start = System.currentTimeMillis();
+            addJarToList(runningDir, urlList);
+            System.out.println(String.format("Finding and scanning of jars took %s ms", System.currentTimeMillis() - start));
 
             System.out.println(String.format("Found %s jars", urlList.size()));
 
@@ -74,6 +77,7 @@ public final class JarLoader {
 
             if (files == null) {
                 System.out.println(String.format("Warn! For file %s listFiles returned null", file.getName()));
+                return;
             }
 
             for (File subfile : files) {

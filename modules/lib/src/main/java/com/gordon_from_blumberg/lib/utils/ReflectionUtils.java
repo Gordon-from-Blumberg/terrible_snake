@@ -17,7 +17,7 @@ import java.util.Arrays;
  * Util methods for Reflection API using
  */
 public final class ReflectionUtils {
-    public static final String DELIMITER = ".";
+    public static final String PACKAGE_DELIMITER = ".";
 
     private ReflectionUtils() {
     }
@@ -116,11 +116,11 @@ public final class ReflectionUtils {
      * @throws IllegalArgumentException If the specified class is not relative to specified package
      */
     public static String getRelativeClassPath(Class<?> clazz, String packageName) {
-        String[] paths = clazz.getName().split("\\" + DELIMITER);
+        String[] paths = clazz.getName().split("\\" + PACKAGE_DELIMITER);
 
         for (int i = 0; i < paths.length; i++) {
             if (packageName.equals(paths[i])) {
-                return String.join(DELIMITER, Arrays.copyOfRange(paths, i + 1, paths.length));
+                return String.join(PACKAGE_DELIMITER, Arrays.copyOfRange(paths, i + 1, paths.length));
             }
         }
 

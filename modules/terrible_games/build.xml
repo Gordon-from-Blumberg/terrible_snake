@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="game-lib" default="build" basedir="../../">
+<project name="terrible_games" default="build" basedir="../../">
     <property name="module.dir" value="modules/${ant.project.name}"/>
 
     <property file="build.properties"/>

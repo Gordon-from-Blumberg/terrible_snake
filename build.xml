@@ -22,8 +22,8 @@
     </fileset>
 
     <fileset id="build.fileset" dir="build">
-        <include name="*.jar"/>
-        <include name="*/**.jar"/>
+        <include name="**.jar"/>
+        <include name="**/**.jar"/>
     </fileset>
 
     <path id="dependencies.classpath">
@@ -74,7 +74,7 @@
         </antcall>
 
         <antcall target="build-module" inheritall="false">
-            <param name="module.name" value="game-lib"/>
+            <param name="module.name" value="terrible_games"/>
         </antcall>
 
         <antcall target="build-module" inheritall="false">

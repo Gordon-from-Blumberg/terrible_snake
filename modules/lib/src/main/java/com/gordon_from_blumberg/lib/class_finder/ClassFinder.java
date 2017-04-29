@@ -1,4 +1,4 @@
-package com.gordon_from_blumberg.class_finder;
+package com.gordon_from_blumberg.lib.class_finder;
 
 /**
  * Copyright (c) 2017 Gordon from Blumberg

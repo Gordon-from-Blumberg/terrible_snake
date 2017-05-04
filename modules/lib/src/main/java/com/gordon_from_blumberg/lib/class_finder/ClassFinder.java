@@ -11,6 +11,7 @@ package com.gordon_from_blumberg.lib.class_finder;
 
 import com.gordon_from_blumberg.lib.utils.FileUtils;
 import com.gordon_from_blumberg.lib.utils.ReflectionUtils;
+import com.gordon_from_blumberg.lib.utils.StringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,25 +20,44 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ClassFinder {
     private static final String CLASS_EXTENSION = ".class";
+    private static final String PATH_REPLACER = "*";
 
     private final String path;
+    private final String pathPattern;
 
     private final List<Class<?>> classList = new ArrayList<>();
 
-    public ClassFinder(String path) throws FileNotFoundException {
+    /**
+     * @param path        Path to directory or to jar file
+     * @param pathPattern If specified only files which are according to this pattern will be scanned
+     * @throws FileNotFoundException
+     */
+    public ClassFinder(String path, String pathPattern) throws FileNotFoundException {
+        path = FileUtils.absolutizePath(path);
         if (!new File(path).exists()) {
             throw new FileNotFoundException(String.format("File not found for path %s", path));
         }
 
+        if (StringUtils.isNotBlank(pathPattern)) {
+            pathPattern = FileUtils.absolutizePath(pathPattern, path);
+        }
+
         this.path = path;
+        this.pathPattern = pathPattern;
 
         findClasses();
+    }
+
+    public ClassFinder(String path) throws FileNotFoundException {
+        this(path, null);
     }
 
     public List<Class<?>> findByAnnotation(Class<? extends Annotation> annotationType) {
@@ -55,18 +75,19 @@ public class ClassFinder {
     }
 
     private void findClasses() {
-        FileUtils.forEach(new File(path), FileUtils::isJar, file -> {
+        FileUtils.forEach(new File(path), getPredicate(), file -> {
             try {
                 JarFile jarFile = new JarFile(file);
                 Enumeration<JarEntry> jarEntries = jarFile.entries();
+                System.out.println(file.getPath());
 
                 while(jarEntries.hasMoreElements()) {
                     String entryName = jarEntries.nextElement().getName();
 
                     if (entryName.endsWith(CLASS_EXTENSION)) {
                         String className = entryName
-                                .replace(FileUtils.PATH_DELIMITER, ReflectionUtils.PACKAGE_DELIMITER)
-                                .replace(CLASS_EXTENSION, "");
+                                .substring(0, entryName.length() - CLASS_EXTENSION.length())
+                                .replace(FileUtils.PATH_DELIMITER, ReflectionUtils.PACKAGE_DELIMITER);
 
                         Class<?> clazz = ReflectionUtils.getClass(className);
                         classList.add(clazz);
@@ -77,5 +98,24 @@ public class ClassFinder {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    private Predicate<File> getPredicate() {
+        if (StringUtils.isNotBlank(pathPattern)) {
+            String pattern = pathPattern
+                    .replace(".", "\\.")
+                    .replace(PATH_REPLACER, ".");
+
+            System.out.println("path pattern = " + pattern);
+
+            return (File file) -> {
+                String filePath = FileUtils.adjustDelimiters(file.getAbsolutePath());
+                System.out.println(filePath);
+                return FileUtils.isJar(file) &&
+                        Pattern.matches(pattern, filePath);
+            };
+        } else {
+            return FileUtils::isJar;
+        }
     }
 }

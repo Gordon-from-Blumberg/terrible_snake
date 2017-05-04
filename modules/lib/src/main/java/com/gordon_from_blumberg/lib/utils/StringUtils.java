@@ -27,6 +27,10 @@ public final class StringUtils {
         return string == null || "".equals(string);
     }
 
+    public static boolean isNotBlank(String string) {
+        return !isBlank(string);
+    }
+
     /**
      * Returns the passed string if it is not blank or the defaultString otherwise
      *

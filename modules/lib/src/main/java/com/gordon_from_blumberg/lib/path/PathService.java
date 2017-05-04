@@ -28,33 +28,33 @@ public interface PathService {
      */
     Path getRunningDirPath();
 
-    /**
-     * Returns the absolute path of the running directory
-     *
-     * @return Absolute path of the running directory as String
-     */
-    String getAbsoluteRunningDirPath();
-
-    /**
-     * Returns the path object for the specified path
-     *
-     * @param path Relative string path
-     * @return Path object
-     */
-    Path getPath(String path);
-
-    /**
-     * Returns the Path object appropriate to the resources directory
-     *
-     * @return Path of the resources directory
-     */
-    Path getResourceDir();
-
-    /**
-     * Returns the Path object appropriate to the particular resource directory
-     *
-     * @param resource Resource directory name
-     * @return Path of the particular resource directory
-     */
-    Path getResourceDir(String resource);
+//    /**
+//     * Returns the absolute path of the running directory
+//     *
+//     * @return Absolute path of the running directory as String
+//     */
+//    String getAbsoluteRunningDirPath();
+//
+//    /**
+//     * Returns the path object for the specified path
+//     *
+//     * @param path Relative string path
+//     * @return Path object
+//     */
+//    Path getPath(String path);
+//
+//    /**
+//     * Returns the Path object appropriate to the resources directory
+//     *
+//     * @return Path of the resources directory
+//     */
+//    Path getResourceDir();
+//
+//    /**
+//     * Returns the Path object appropriate to the particular resource directory
+//     *
+//     * @param resource Resource directory name
+//     * @return Path of the particular resource directory
+//     */
+//    Path getResourceDir(String resource);
 }

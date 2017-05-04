@@ -29,28 +29,32 @@ public class PathServiceImpl implements PathService {
         return runningDir;
     }
 
-    @Override
-    public String getAbsoluteRunningDirPath() {
-        return runningDir.toAbsolutePath().toString();
-    }
+    //    @Override
+//    public String getAbsoluteRunningDirPath() {
+//        return runningDir.toAbsolutePath().toString();
+//    }
+//
+//    @Override
+//    public Path getPath(String path) {
+//        return runningDir.resolve(path);
+//    }
+//
+//    @Override
+//    public Path getResourceDir() {
+//        return runningDir.resolve(RESOURCES_DIR);
+//    }
+//
+//    @Override
+//    public Path getResourceDir(String resource) {
+//        return getResourceDir().resolve(resource);
+//    }
 
-    @Override
-    public Path getPath(String path) {
-        return runningDir.resolve(path);
-    }
+//    private String slashifyAtBeginning(String path) {
+//
+//    }
 
-    @Override
-    public Path getResourceDir() {
-        return runningDir.resolve(RESOURCES_DIR);
-    }
-
-    @Override
-    public Path getResourceDir(String resource) {
-        return getResourceDir().resolve(resource);
-    }
-
-    private static Path getRunningDir() {
-        String runningDirProperty = System.getProperty("runningDir");
+    private Path getRunningDir() {
+        String runningDirProperty = PathService.getRunningDir();
         return Paths.get(StringUtils.isBlank(runningDirProperty) ?
                 "" : runningDirProperty);
     }

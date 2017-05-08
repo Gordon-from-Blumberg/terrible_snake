@@ -9,7 +9,7 @@ package com.gordon_from_blumberg.lib.utils;
  * Created: 2:05 027 27.04.17
  */
 
-import com.gordon_from_blumberg.lib.path.PathService;
+import com.gordon_from_blumberg.lib.path.PathUtils;
 
 import java.io.File;
 import java.util.function.Consumer;
@@ -78,7 +78,7 @@ public final class FileUtils {
      * @return Absolute path
      */
     public static String absolutizePath(String path) {
-        return absolutizePath(path, PathService.getRunningDir());
+        return absolutizePath(path, PathUtils.getRunningDir());
     }
 
     /**

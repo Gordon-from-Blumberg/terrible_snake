@@ -9,24 +9,24 @@ package com.gordon_from_blumberg.lib.path;
  * Created: 20:07 025 25.06.16
  */
 
-import java.nio.file.Path;
-
 /**
- * Service for the path processing
+ * Util methods for work with paths
  */
-public interface PathService {
-    String RESOURCES_DIR = "resources/";
+public final class PathUtils {
+    private static final String runningDir;
 
-    static String getRunningDir() {
-        return System.getProperty("runningDir");
+    private PathUtils() {}
+
+    static {
+        runningDir = System.getProperty("runningDir");
     }
 
     /**
-     * Returns the Path object appropriate to the running directory
-     *
-     * @return Path of the running directory
+     * @return Path to the directory containing the jar file which the app was started from
      */
-    Path getRunningDirPath();
+    public static String getRunningDir() {
+        return runningDir;
+    }
 
 //    /**
 //     * Returns the absolute path of the running directory

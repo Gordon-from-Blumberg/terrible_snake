@@ -12,7 +12,7 @@ package com.gordon_from_blumberg;
 import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.jar_loader.JarLoader;
 import com.gordon_from_blumberg.lib.class_finder.ClassFinder;
-import com.gordon_from_blumberg.lib.path.PathService;
+import com.gordon_from_blumberg.lib.path.PathUtils;
 
 import java.net.URLClassLoader;
 
@@ -24,7 +24,7 @@ public final class Main {
 
             init(args);
 
-            ClassFinder classFinder = new ClassFinder(PathService.getRunningDir(), "apps/*/*");
+            ClassFinder classFinder = new ClassFinder(PathUtils.getRunningDir(), "apps/*/*");
 
             Game game = new Game();
 

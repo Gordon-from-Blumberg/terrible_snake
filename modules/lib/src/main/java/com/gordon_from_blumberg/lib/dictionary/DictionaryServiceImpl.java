@@ -32,7 +32,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     public DictionaryServiceImpl() {
         currentLanguage = DEFAULT_LANGUAGE;
 
-        dictionaryProperties = readDictionaryProperties();
+//        dictionaryProperties = readDictionaryProperties();
     }
 
     @Override

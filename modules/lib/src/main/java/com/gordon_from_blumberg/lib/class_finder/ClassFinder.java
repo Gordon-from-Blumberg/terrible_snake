@@ -20,17 +20,13 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ClassFinder {
     private static final String CLASS_EXTENSION = ".class";
-    private static final String PATH_REPLACER = "*";
 
-    private final String path;
     private final String pathPattern;
 
     private final List<Class<?>> classList = new ArrayList<>();
@@ -46,14 +42,16 @@ public class ClassFinder {
             throw new FileNotFoundException(String.format("File not found for path %s", path));
         }
 
-        if (StringUtils.isNotBlank(pathPattern)) {
-            pathPattern = FileUtils.absolutizePath(pathPattern, path);
-        }
+        pathPattern = StringUtils.isNotBlank(pathPattern) ?
+                FileUtils.absolutizePath(pathPattern, path) :
+                path;
 
-        this.path = path;
         this.pathPattern = pathPattern;
 
+        //todo use logger
+        long start = System.currentTimeMillis();
         findClasses();
+        System.out.println(String.format("%s classes are found in %s ms", classList.size(), System.currentTimeMillis() - start));
     }
 
     public ClassFinder(String path) throws FileNotFoundException {
@@ -75,7 +73,7 @@ public class ClassFinder {
     }
 
     private void findClasses() {
-        FileUtils.forEach(new File(path), getPredicate(), file -> {
+        FileUtils.forEach(pathPattern, FileUtils::isJar, file -> {
             try {
                 JarFile jarFile = new JarFile(file);
                 Enumeration<JarEntry> jarEntries = jarFile.entries();
@@ -91,31 +89,12 @@ public class ClassFinder {
 
                         Class<?> clazz = ReflectionUtils.getClass(className);
                         classList.add(clazz);
-                        System.out.println(String.format("%s class is found in %s", clazz.getName(), path));
+                        System.out.println(String.format("%s class is found in %s", clazz.getName(), file.getPath()));
                     }
                 }
             } catch(IOException e) {
                 throw new RuntimeException(e);
             }
         });
-    }
-
-    private Predicate<File> getPredicate() {
-        if (StringUtils.isNotBlank(pathPattern)) {
-            String pattern = pathPattern
-                    .replace(".", "\\.")
-                    .replace(PATH_REPLACER, ".");
-
-            System.out.println("path pattern = " + pattern);
-
-            return (File file) -> {
-                String filePath = FileUtils.adjustDelimiters(file.getAbsolutePath());
-                System.out.println(filePath);
-                return FileUtils.isJar(file) &&
-                        Pattern.matches(pattern, filePath);
-            };
-        } else {
-            return FileUtils::isJar;
-        }
     }
 }

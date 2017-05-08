@@ -24,7 +24,7 @@ public final class Main {
 
             init(args);
 
-            ClassFinder classFinder = new ClassFinder(PathService.getRunningDir() + "/apps");
+            ClassFinder classFinder = new ClassFinder(PathService.getRunningDir(), "apps/*/*");
 
             Game game = new Game();
 

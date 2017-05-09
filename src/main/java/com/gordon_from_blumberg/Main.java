@@ -9,10 +9,8 @@ package com.gordon_from_blumberg;
  * Created: 16:06 011 11.06.16
  */
 
-import com.gordon_from_blumberg.game.Game;
 import com.gordon_from_blumberg.jar_loader.JarLoader;
-import com.gordon_from_blumberg.lib.class_finder.ClassFinder;
-import com.gordon_from_blumberg.lib.path.PathUtils;
+import com.gordon_from_blumberg.lib.application.AppManager;
 
 import java.net.URLClassLoader;
 
@@ -24,11 +22,7 @@ public final class Main {
 
             init(args);
 
-            ClassFinder classFinder = new ClassFinder(PathUtils.getRunningDir(), "apps/*/*");
-
-            Game game = new Game();
-
-            game.run();
+            AppManager appManager = new AppManager();
 
         } catch(Throwable e) {
             e.printStackTrace();

@@ -9,22 +9,27 @@ package com.gordon_from_blumberg.game;
  * Created: 16:10 011 11.06.16
  */
 
+import com.gordon_from_blumberg.lib.application.App;
+import com.gordon_from_blumberg.lib.application.Application;
+
 /**
  * Entry point object of the game
  */
-public class Game {
+@App("terribleGames")
+public class TerribleGames implements Application {
     private final int SKIP_TICKS;
     private final int MAX_FRAME_SKIP;
 
     private boolean running = false;
 
     //todo
-    public Game() {
+    public TerribleGames() {
         SKIP_TICKS = 10;
         MAX_FRAME_SKIP = 10;
     }
 
-    public void run() {
+    @Override
+    public void start() {
         running = true;
 
         long nextGameTick = System.currentTimeMillis();

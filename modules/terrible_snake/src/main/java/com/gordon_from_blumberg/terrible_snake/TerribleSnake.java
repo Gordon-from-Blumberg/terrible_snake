@@ -9,7 +9,7 @@ package com.gordon_from_blumberg.terrible_snake;
  * Created: 16:15 011 11.06.16
  */
 
-import com.gordon_from_blumberg.game.Game;
+import com.gordon_from_blumberg.game.TerribleGames;
 import com.gordon_from_blumberg.game.entity.GameRootEntity;
 import com.gordon_from_blumberg.game.entity.GameRootEntityFactory;
 import com.gordon_from_blumberg.game.settings.GraphicSettings;
@@ -33,7 +33,7 @@ import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
 //todo
-public class TerribleSnake extends Game {
+public class TerribleSnake extends TerribleGames {
 
     private static final String DEFAULT_STATE = MainMenu.STATE_KEY;
 

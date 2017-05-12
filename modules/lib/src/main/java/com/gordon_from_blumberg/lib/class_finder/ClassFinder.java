@@ -60,14 +60,14 @@ public class ClassFinder {
 
     public List<Class<?>> findByAnnotation(Class<? extends Annotation> annotationType) {
         return classList.stream()
-                .filter(clazz -> clazz.getAnnotation(annotationType) != null)
+                .filter(clazz -> clazz.isAnnotationPresent(annotationType))
                 .collect(Collectors.toList());
     }
 
     @SuppressWarnings("unchecked")
     public <I> List<Class<? extends I>> findByInterface(Class<I> interfaceType) {
         return classList.stream()
-                .filter(clazz -> clazz.isAssignableFrom(interfaceType))
+                .filter(interfaceType::isAssignableFrom)
                 .map(clazz -> (Class<I>) clazz)
                 .collect(Collectors.toList());
     }

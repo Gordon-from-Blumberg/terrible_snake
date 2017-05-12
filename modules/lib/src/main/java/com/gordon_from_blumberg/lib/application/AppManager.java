@@ -20,16 +20,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AppManager {
-    private JFrame frame;
-    private ClassFinder classFinder;
+    private final JFrame frame;
+    private final Map<String, Class<? extends Application>> apps;
 
     public AppManager() throws FileNotFoundException {
         frame = new JFrame();
-        classFinder = new ClassFinder(PathUtils.getRunningDir(), "apps/*/*");
+        apps = getApplicationClassList();
+        System.out.println(String.format("Found apps are %s", apps));
     }
 
-    private Map<String, Class<? extends Application>> getApplicationClassList() {
-        return classFinder.findByInterface(Application.class)
+    private Map<String, Class<? extends Application>> getApplicationClassList() throws FileNotFoundException {
+        return new ClassFinder(PathUtils.getRunningDir(), "apps/*/*")
+                .findByInterface(Application.class)
                 .stream()
                 .collect(Collectors.toMap(this::getNameCode, cls -> cls));
     }
